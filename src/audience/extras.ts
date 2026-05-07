@@ -4,7 +4,7 @@ import { AudienceId } from "./profiles";
 import {
   ShoppingBag, Calendar, Factory, Truck, Lightbulb, GraduationCap, Users,
   BarChart3, Box, AlertTriangle, MessagesSquare, FileSpreadsheet, BookOpen,
-  Bot, Zap, Activity, FileText, Vote, Megaphone
+  Bot, Zap, Activity, FileText, Vote, Megaphone, ShieldCheck, HeartHandshake, Store
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -51,12 +51,15 @@ const TILES = {
   argumentaires: { to: "/commerce#supports-plv", label: "Argumentaires", icon: FileText, color: "from-secondary to-[hsl(173,80%,30%)]" },
   sondage: { to: "/idees", label: "Sondage régional", icon: Vote, color: "from-warning to-[hsl(36,90%,40%)]" },
   vivaEngage: { to: "/idees", label: "Discussions Viva Engage", icon: Megaphone, color: "from-[hsl(220,50%,40%)] to-primary" },
+  securite: { to: "#", label: "Sécurité agence", icon: ShieldCheck, color: "from-primary to-[hsl(207,60%,30%)]" },
+  rh: { to: "#", label: "RH agence", icon: HeartHandshake, color: "from-[hsl(173,60%,35%)] to-[hsl(173,80%,30%)]" },
+  merchandising: { to: "#", label: "Merchandising / Game Agence", icon: Store, color: "from-secondary to-primary" },
 } as const;
 
 export const homeTilesByAudience: Record<AudienceId, Tile[]> = {
   general: [TILES.commerce, TILES.calendrier, TILES.fournisseurs, TILES.fabricants, TILES.idees, TILES.onboarding, TILES.expertises],
   direction: [TILES.qlik, TILES.calendrier, TILES.commerce, TILES.vigilances, TILES.remontees, TILES.contacts, TILES.fournisseurs],
-  agence: [TILES.calendrier, TILES.commerce, TILES.supports, TILES.fournisseurs, TILES.crm, TILES.yoobic, TILES.idees],
+  agence: [TILES.securite, TILES.rh, TILES.commerce, TILES.yoobic, TILES.merchandising, TILES.kezako, TILES.idees],
   commerce: [TILES.calendrier, TILES.qlik, TILES.crm, TILES.yoobic, TILES.pico, TILES.supports, TILES.argumentaires],
   assistante: [TILES.modeles, TILES.modes, TILES.soon, TILES.calendrier, TILES.kezako, TILES.contacts, TILES.idees],
   expertise: [TILES.fournisseurs, TILES.fabricants, TILES.expertises, TILES.crm, TILES.supports, TILES.rexelGpt, TILES.idees],
@@ -121,27 +124,36 @@ export const pageConfigByAudience: Record<AudienceId, PageConfig> = {
     },
   },
   agence: {
-    commerce: { message: "Animation commerciale agence — supports et opérations.", featuredOps: ["Printemps Énergie 2026", "Challenge réseau Éclairage"], pinnedSupports: ["Kit commercial Printemps Énergie", "PLV éclairage industriel — A3"], pinnedContacts: ["Laurent Martin", "Marc Dupont"] },
+    commerce: { message: "Vue RA — opérations, Yoobic, merchandising et supports à relayer sans fouiller les mails.", featuredOps: ["Printemps Énergie 2026", "Challenge réseau Éclairage"], pinnedSupports: ["Kit commercial Printemps Énergie", "PLV éclairage industriel — A3", "Fiche merchandising / Game Agence"], pinnedContacts: ["Laurent Martin", "Marc Dupont"] },
     fournisseurs: { message: "Disponibilités utiles à votre agence.", featuredCodes: ["SCH001", "LEG002", "HAG003"], defaultFilter: "Disponibilité", pinnedFabricants: ["Schneider Electric", "Hager", "Legrand"] },
-    onboarding: { message: "Parcours 30 jours et procédures d'intégration.", featuredTemplates: ["Plan d'action 30 jours", "Trame visite client"], featuredModes: ["Préparer une visite client", "Retrouver un support commerce"], featuredSoon: ["Soon — Parcours nouveau collaborateur"] },
+    onboarding: { message: "Repères RA — sécurité, RH, procédures courtes et parcours d'intégration.", featuredTemplates: ["Livre sécurité agence", "Lien RH — mutuelle et prévoyance", "Plan d'action 30 jours"], featuredModes: ["Retrouver une procédure sécurité", "Trouver un contact RH", "Préparer une visite client"], featuredSoon: ["Soon — Parcours nouveau collaborateur"] },
     expertises: { message: "Qui contacter pour vos sujets agence.", featuredContacts: ["L. Martin", "S. Bernard", "P. Leroy"], featuredFiches: ["Éclairage", "Digital / outils"] },
-    idees: { message: "Vos remontées terrain et idées agence.", featuredThemes: ["Commerce", "Outils"], featuredTypes: ["Irritant terrain", "Suggestion d'amélioration"] },
+    idees: { message: "Vos remontées terrain, idées agence et irritants outils / sécurité / RH.", featuredThemes: ["Commerce", "Outils", "Sécurité", "RH"], featuredTypes: ["Irritant terrain", "Suggestion d'amélioration"] },
     mesAcces: {
       outils: [
+        { label: "Sécurité agence", desc: "Livre sécurité & réflexes" },
+        { label: "RH agence", desc: "Mutuelle, prévoyance, contacts" },
         { label: "Calendrier opérations", desc: "Planning commercial" },
         { label: "Supports commerciaux", desc: "Kits & PLV" },
-        { label: "Boîte à questions", desc: "Remonter / questionner" },
-        { label: "Fournisseurs", desc: "Disponibilités utiles" },
-        { label: "CRM", desc: "Suivi commercial" },
         { label: "Yoobic", desc: "Animation terrain" },
+        { label: "Merchandising", desc: "Game Agence & dispositifs" },
+        { label: "CRM", desc: "Suivi commercial" },
+        { label: "Qlik", desc: "Pilotage existant" },
+        { label: "Kezako", desc: "Procédures internes" },
+        { label: "Boîte à questions", desc: "Remonter / questionner" },
       ],
       favoris: [
+        { type: "Lien", label: "Livre sécurité agence" },
+        { type: "Lien", label: "RH agence — mutuelle / prévoyance" },
         { type: "Page", label: "Commerce & animations", to: "/commerce" },
         { type: "Document", label: "Kit Printemps Énergie 2026" },
+        { type: "Lien", label: "Yoobic — animation terrain" },
         { type: "Page", label: "Boîte à questions", to: "/idees" },
         { type: "Contact", label: "L. Martin — Animation commerciale" },
       ],
       recents: [
+        { kind: "Procédure", label: "Livre sécurité agence", date: "Aujourd'hui" },
+        { kind: "RH", label: "Lien mutuelle / prévoyance", date: "Hier" },
         { kind: "Support", label: "PLV éclairage industriel", date: "Hier" },
         { kind: "Opération", label: "Printemps Énergie 2026", date: "Il y a 2 j" },
       ],

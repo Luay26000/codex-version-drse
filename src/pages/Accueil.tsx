@@ -2,7 +2,8 @@ import {
   Box, BarChart3, BookOpen, MessagesSquare, Sparkles, Calendar,
   FileText, GraduationCap, Bot, Vote, Users2, Activity, FileSpreadsheet,
   Megaphone, Zap, ScanSearch, ListChecks, ArrowUpRight,
-  ShoppingBag, Factory, Lightbulb, Users, Truck, AlertTriangle, Star, Bell
+  ShoppingBag, Factory, Lightbulb, Users, Truck, AlertTriangle, Star, Bell,
+  ShieldCheck, HeartHandshake, Store
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PageHero, Section, Status, WebPartTag, QuickLinks } from "@/components/SPParts";
@@ -28,6 +29,9 @@ const iconForCard = (name: string) => {
   if (n.includes("sondage")) return Vote;
   if (n.includes("viva")) return Megaphone;
   if (n.includes("pico")) return Zap;
+  if (n.includes("sécurité") || n.includes("securite")) return ShieldCheck;
+  if (n.includes("rh agence") || n === "rh") return HeartHandshake;
+  if (n.includes("merchandising") || n.includes("game agence")) return Store;
   if (n.includes("contacts") || n.includes("organigramme")) return Users;
   if (n.includes("fournisseur") || n.includes("fabricant")) return Factory;
   if (n.includes("supports") || n.includes("argumentaire") || n.includes("kit")) return BookOpen;
@@ -44,6 +48,7 @@ const dashboardCardTypeFor = (name: string) => {
   if (n.includes("actualit")) return "News";
   if (n.includes("calendrier") || n.includes("agenda") || n.includes("événement") || n.includes("evenement")) return "Événements";
   if (n.includes("support") || n.includes("kit") || n.includes("plv") || n.includes("modèle") || n.includes("mode opératoire")) return "Dossier";
+  if (n.includes("sécurité") || n.includes("securite") || n.includes("rh agence") || n.includes("merchandising")) return "Lien web";
   if (n.includes("boîte") || n.includes("question") || n.includes("idée") || n.includes("remontée") || n.includes("synthèse") || n.includes("fournisseurs en vigilance")) return "Power Apps";
   if (n.includes("approbation")) return "Approbations";
   if (n.includes("pulse")) return "Viva Pulse";
@@ -145,6 +150,26 @@ export default function Accueil() {
                     {priorities.accueilMessage || "Retrouver rapidement les accès et contenus régionaux utiles."}
                   </div>
                 </div>
+                {audienceId === "agence" && (
+                  <div className="rounded border border-primary/20 bg-primary/5 p-3">
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-primary">Choix V1 réaliste</div>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Responsable d'agence d'abord : sécurité, RH, commerce, Yoobic, merchandising et questions terrain.
+                    </p>
+                    <div className="mt-3 grid grid-cols-3 gap-2">
+                      {[
+                        { icon: ShieldCheck, label: "Sécurité" },
+                        { icon: HeartHandshake, label: "RH" },
+                        { icon: Store, label: "Terrain" },
+                      ].map((item) => (
+                        <div key={item.label} className="rounded bg-background p-2 text-center">
+                          <item.icon className="mx-auto h-4 w-4 text-secondary" />
+                          <span className="mt-1 block text-[10px] font-medium text-primary">{item.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <Link to="/commerce" className="flex items-center gap-3 rounded border border-border p-3 hover:border-secondary">
                   <Calendar className="h-5 w-5 text-secondary" />
                   <span className="text-sm font-medium text-foreground">Calendrier opérations</span>

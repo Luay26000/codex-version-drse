@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rexel Portal Design System - Sobre corporate neutre */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Bleu foncé Rexel #0A287D */
+    --primary: 227 85% 27%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Bleu clair Rexel #4487BD */
+    --secondary: 207 50% 51%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Gris clair fond #F5F7FA */
+    --muted: 214 27% 97%;
+    --muted-foreground: 213 13% 42%;
+
+    --accent: 207 50% 51%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Statuts */
+    --success: 173 100% 31%; /* Vert Joule #009F8C */
+    --success-foreground: 0 0% 100%;
+    --warning: 36 100% 50%; /* Orange Watt #FF9D00 */
+    --warning-foreground: 0 0% 10%;
+    --info: 207 50% 51%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 214 14% 90%; /* #E1E5EA */
+    --input: 214 14% 90%;
+    --ring: 227 85% 27%;
+
+    --radius: 0.375rem;
+
+    --sidebar-background: 227 85% 27%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 207 50% 51%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 227 60% 35%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 227 50% 40%;
+    --sidebar-ring: 207 50% 51%;
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-muted text-foreground;
+    font-family: 'Roboto', 'Verdana', sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Roboto Condensed', 'Roboto', 'Verdana', sans-serif;
+    @apply text-primary;
+  }
+}
+
+@layer components {
+  .sp-card {
+    @apply bg-card border border-border rounded-md p-5 shadow-sm hover:shadow-md transition-shadow;
+  }
+  .sp-section {
+    @apply bg-card border border-border rounded-md;
+  }
+  .sp-section-header {
+    @apply px-5 py-3 border-b border-border flex items-center justify-between;
+  }
+  .sp-section-title {
+    @apply text-base font-semibold text-primary;
+  }
+  .sp-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+}

@@ -1,0 +1,973 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portail Regional Sud-Est - V1 realiste</title>
+    <style>
+      :root {
+        --rexel-blue: #0a287d;
+        --rexel-light-blue: #4487bd;
+        --rexel-green: #009f8c;
+        --rexel-orange: #ff9d00;
+        --rexel-yellow: #ffdd00;
+        --rexel-purple: #75007e;
+        --surface: #ffffff;
+        --page: #f5f7fa;
+        --line: #e1e5ea;
+        --text: #101828;
+        --muted: #5f6b7a;
+        --soft-blue: #eef5fb;
+        --soft-green: #e9f8f5;
+        --soft-orange: #fff4df;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--text);
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.45;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        min-height: 100vh;
+      }
+
+      .topbar {
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+        background: var(--rexel-blue);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .brand-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--rexel-blue);
+      }
+
+      .brand-subtitle {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a {
+        font-size: 13px;
+        padding: 7px 10px;
+        border-radius: 4px;
+        color: #24324a;
+      }
+
+      .nav a.active,
+      .nav a:hover {
+        background: var(--soft-blue);
+        color: var(--rexel-blue);
+      }
+
+      .page {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        background:
+          linear-gradient(90deg, rgba(10, 40, 125, 0.94), rgba(10, 40, 125, 0.72)),
+          radial-gradient(circle at 85% 20%, rgba(68, 135, 189, 0.95), transparent 34%),
+          linear-gradient(135deg, #0a287d, #4487bd);
+        color: white;
+        min-height: 220px;
+        padding: 34px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 24px;
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 660px;
+        margin: 14px 0 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        padding: 8px 14px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .button.primary {
+        background: var(--rexel-yellow);
+        color: #14213d;
+      }
+
+      .button.secondary {
+        border-color: rgba(255, 255, 255, 0.38);
+        color: white;
+      }
+
+      .hero-panel {
+        align-self: stretch;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 16px;
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-panel-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.78);
+        margin-bottom: 12px;
+      }
+
+      .hero-step {
+        display: flex;
+        gap: 10px;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-step:first-of-type {
+        border-top: 0;
+      }
+
+      .step-number {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        flex: 0 0 auto;
+      }
+
+      .hero-step strong {
+        display: block;
+        font-size: 13px;
+      }
+
+      .hero-step span {
+        display: block;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .canvas-note {
+        margin: 18px 0 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 9px;
+        border: 1px dashed #b9c4d2;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 5px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .canvas-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--rexel-light-blue);
+      }
+
+      .grid-12 {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 18px;
+        align-items: start;
+      }
+
+      .span-8 {
+        grid-column: span 8;
+      }
+
+      .span-4 {
+        grid-column: span 4;
+      }
+
+      .span-6 {
+        grid-column: span 6;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .card-header {
+        min-height: 54px;
+        padding: 16px 18px 10px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .card-title {
+        margin: 0;
+        font-size: 18px;
+        color: var(--rexel-blue);
+        letter-spacing: 0;
+      }
+
+      .card-subtitle {
+        margin: 4px 0 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+        border: 1px solid var(--line);
+        background: #f8fafc;
+        border-radius: 99px;
+        padding: 4px 8px;
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--rexel-light-blue);
+      }
+
+      .card-body {
+        padding: 0 18px 18px;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .tool-card {
+        min-height: 106px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #fff;
+      }
+
+      .tool-card:hover {
+        border-color: var(--rexel-light-blue);
+      }
+
+      .tool-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: var(--soft-blue);
+        color: var(--rexel-blue);
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .tool-card strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+
+      .tool-card span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .rail-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .rail-item {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px;
+        background: #fff;
+      }
+
+      .rail-item strong {
+        display: block;
+        font-size: 13px;
+      }
+
+      .rail-item span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .news-card {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .news-visual {
+        height: 74px;
+        background:
+          linear-gradient(135deg, rgba(10, 40, 125, 0.84), rgba(68, 135, 189, 0.6)),
+          repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.14) 0 8px, transparent 8px 16px);
+        display: flex;
+        align-items: flex-end;
+        padding: 10px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 99px;
+        padding: 3px 8px;
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--rexel-blue);
+        background: white;
+      }
+
+      .news-content {
+        padding: 11px;
+      }
+
+      .news-content .date {
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .news-content strong {
+        display: block;
+        margin-top: 4px;
+        font-size: 13px;
+        color: var(--rexel-blue);
+      }
+
+      .news-content p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .event {
+        display: flex;
+        gap: 12px;
+        padding: 11px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .event:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .datebox {
+        width: 48px;
+        min-width: 48px;
+        border-radius: 6px;
+        border: 1px solid var(--line);
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .datebox span {
+        display: block;
+        background: var(--rexel-blue);
+        color: white;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 2px;
+      }
+
+      .datebox strong {
+        display: block;
+        font-size: 18px;
+        line-height: 28px;
+        color: var(--rexel-blue);
+      }
+
+      .event-title {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .event-meta {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .operation {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        min-height: 224px;
+      }
+
+      .operation-visual {
+        background:
+          linear-gradient(135deg, rgba(0, 159, 140, 0.94), rgba(10, 40, 125, 0.84)),
+          radial-gradient(circle at 20% 20%, rgba(255, 221, 0, 0.85), transparent 28%);
+        color: white;
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .operation-visual .label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        opacity: 0.82;
+      }
+
+      .operation-visual strong {
+        font-size: 25px;
+        line-height: 1.08;
+        display: block;
+      }
+
+      .operation-copy {
+        padding: 22px;
+      }
+
+      .operation-copy h3 {
+        margin: 0;
+        font-size: 20px;
+        color: var(--rexel-blue);
+      }
+
+      .operation-copy p {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 8px 0 16px;
+      }
+
+      .mini-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .mini-link {
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 7px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--rexel-blue);
+        background: white;
+      }
+
+      .status-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .status-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: start;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 11px;
+      }
+
+      .status-row strong {
+        font-size: 13px;
+      }
+
+      .status-row span {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 2px;
+      }
+
+      .badge {
+        border-radius: 99px;
+        padding: 4px 8px;
+        font-size: 10px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .badge.warn {
+        color: #794900;
+        background: var(--soft-orange);
+      }
+
+      .badge.ok {
+        color: #006b5d;
+        background: var(--soft-green);
+      }
+
+      .badge.info {
+        color: var(--rexel-blue);
+        background: var(--soft-blue);
+      }
+
+      .question-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .question-card {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 14px;
+        min-height: 144px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .question-card strong {
+        color: var(--rexel-blue);
+        font-size: 14px;
+      }
+
+      .question-card p {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 8px 0 12px;
+      }
+
+      .footer-note {
+        color: var(--muted);
+        font-size: 12px;
+        padding: 18px 0 6px;
+      }
+
+      @media (max-width: 1050px) {
+        .hero,
+        .operation {
+          grid-template-columns: 1fr;
+        }
+
+        .span-8,
+        .span-4,
+        .span-6 {
+          grid-column: 1 / -1;
+        }
+
+        .dashboard-grid,
+        .news-grid,
+        .question-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 700px) {
+        .topbar-inner,
+        .page {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        .hero {
+          padding: 24px;
+        }
+
+        .nav {
+          justify-content: flex-start;
+        }
+
+        .dashboard-grid,
+        .news-grid,
+        .question-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-mark">R</div>
+            <div>
+              <div class="brand-title">Portail Regional Sud-Est</div>
+              <div class="brand-subtitle">V1 realiste - centralisation des acces utiles</div>
+            </div>
+          </div>
+          <nav class="nav" aria-label="Navigation principale">
+            <a href="#" class="active">Accueil</a>
+            <a href="#">Commerce</a>
+            <a href="#">Fournisseurs</a>
+            <a href="#">Questions</a>
+            <a href="#">Contacts</a>
+            <a href="#">Onboarding</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page">
+        <section class="hero">
+          <div>
+            <div class="hero-panel-title">Direction Regionale Sud-Est - Reseau</div>
+            <h1>Une seule entree pour retrouver l’essentiel.</h1>
+            <p>
+              Une V1 volontairement plus courte : outils, operations commerciales,
+              supports, fournisseurs, contacts, onboarding et remontées terrain.
+              Le reste reste dans les outils sources.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#">Acceder aux outils</a>
+              <a class="button secondary" href="#">Voir l’operation du moment</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Plan de deploiement">
+            <div class="hero-panel-title">Ouverture progressive</div>
+            <div class="hero-step">
+              <div class="step-number">1</div>
+              <div>
+                <strong>COPIL DP</strong>
+                <span>Valider le squelette, la gouvernance et le niveau d’information.</span>
+              </div>
+            </div>
+            <div class="hero-step">
+              <div class="step-number">2</div>
+              <div>
+                <strong>Responsables d’agence</strong>
+                <span>Tester operations, supports, questions et fournisseurs.</span>
+              </div>
+            </div>
+            <div class="hero-step">
+              <div class="step-number">3</div>
+              <div>
+                <strong>Elargissement</strong>
+                <span>Ajouter seulement les contenus maintenables.</span>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - 2/3 acces + 1/3 priorites</div>
+        <section class="grid-12">
+          <div class="card span-8">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Acces prioritaires</h2>
+                <p class="card-subtitle">Cartes Dashboard ou boutons d’action. Objectif : retrouver vite, pas dupliquer.</p>
+              </div>
+              <span class="tag">Tableau de bord</span>
+            </div>
+            <div class="card-body dashboard-grid">
+              <a class="tool-card" href="#">
+                <div class="tool-icon">P</div>
+                <div><strong>Pixel</strong><span>Intranet et contenus corporate</span></div>
+              </a>
+              <a class="tool-card" href="#">
+                <div class="tool-icon">Q</div>
+                <div><strong>Qlik</strong><span>Pilotage chiffre existant</span></div>
+              </a>
+              <a class="tool-card" href="#">
+                <div class="tool-icon">C</div>
+                <div><strong>CRM</strong><span>Suivi commercial et client</span></div>
+              </a>
+              <a class="tool-card" href="#">
+                <div class="tool-icon">Y</div>
+                <div><strong>Yoobic</strong><span>Animations et execution terrain</span></div>
+              </a>
+              <a class="tool-card" href="#">
+                <div class="tool-icon">S</div>
+                <div><strong>Soon</strong><span>Onboarding et parcours</span></div>
+              </a>
+              <a class="tool-card" href="#">
+                <div class="tool-icon">Pi</div>
+                <div><strong>Pico</strong><span>Variables commerciaux</span></div>
+              </a>
+            </div>
+          </div>
+
+          <aside class="card span-4">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">A suivre cette semaine</h2>
+                <p class="card-subtitle">Trois signaux max pour eviter la surcharge.</p>
+              </div>
+              <span class="tag">Focus</span>
+            </div>
+            <div class="card-body rail-list">
+              <a class="rail-item" href="#">
+                <strong>Calendrier Gregoire</strong>
+                <span>Operations en cours et prochaines echeances.</span>
+              </a>
+              <a class="rail-item" href="#">
+                <strong>Kit PLV eclairage</strong>
+                <span>Support mis a jour pour les agences.</span>
+              </a>
+              <a class="rail-item" href="#">
+                <strong>Rexel GPT</strong>
+                <span>Aide a la recherche et a la formulation.</span>
+              </a>
+            </div>
+          </aside>
+        </section>
+
+        <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - 2/3 actus + 1/3 agenda</div>
+        <section class="grid-12">
+          <div class="card span-8">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Actualites utiles</h2>
+                <p class="card-subtitle">Redirections vers les sources existantes, pas creation d’un journal local.</p>
+              </div>
+              <span class="tag">News / lien web</span>
+            </div>
+            <div class="card-body news-grid">
+              <article class="news-card">
+                <div class="news-visual"><span class="pill">Commerce</span></div>
+                <div class="news-content">
+                  <div class="date">5 mai 2026</div>
+                  <strong>Operation commerciale en cours</strong>
+                  <p>Lien vers la source officielle et les supports associes.</p>
+                </div>
+              </article>
+              <article class="news-card">
+                <div class="news-visual"><span class="pill">Fournisseur</span></div>
+                <div class="news-content">
+                  <div class="date">3 mai 2026</div>
+                  <strong>Vigilance approvisionnement</strong>
+                  <p>Message court, contact interne et source a consulter.</p>
+                </div>
+              </article>
+              <article class="news-card">
+                <div class="news-visual"><span class="pill">Support</span></div>
+                <div class="news-content">
+                  <div class="date">29 avril 2026</div>
+                  <strong>Nouveau modele disponible</strong>
+                  <p>Acces au dossier ou a la bibliotheque de documents.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="card span-4">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Agenda</h2>
+                <p class="card-subtitle">Seulement les echeances vraiment utiles.</p>
+              </div>
+              <span class="tag">Evenements</span>
+            </div>
+            <div class="card-body">
+              <div class="event">
+                <div class="datebox"><span>MAI</span><strong>12</strong></div>
+                <div>
+                  <div class="event-title">Point operations commerciales</div>
+                  <div class="event-meta">Teams - 9h00</div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="datebox"><span>MAI</span><strong>15</strong></div>
+                <div>
+                  <div class="event-title">Echeance supports PLV</div>
+                  <div class="event-meta">Toutes agences</div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="datebox"><span>MAI</span><strong>20</strong></div>
+                <div>
+                  <div class="event-title">Point fournisseurs en vigilance</div>
+                  <div class="event-meta">Commerce + expertise</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - operation + fournisseurs</div>
+        <section class="grid-12">
+          <div class="card span-8 operation">
+            <div class="operation-visual">
+              <div class="label">Operation du moment</div>
+              <strong>Printemps Energie 2026</strong>
+              <span>Kit + supports + calendrier</span>
+            </div>
+            <div class="operation-copy">
+              <h3>Commerce & animations reste le bloc prioritaire.</h3>
+              <p>
+                Une operation visible, des liens vers les supports, et aucune donnée
+                sensible. Le portail sert de point de depart, le detail reste dans
+                les sources autorisees.
+              </p>
+              <div class="mini-actions">
+                <a class="mini-link" href="#">Ouvrir le kit</a>
+                <a class="mini-link" href="#">Supports PLV</a>
+                <a class="mini-link" href="#">Calendrier Gregoire</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="card span-4">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Fournisseurs</h2>
+                <p class="card-subtitle">Vigilance simple, contact et source.</p>
+              </div>
+              <span class="tag">Liste</span>
+            </div>
+            <div class="card-body status-list">
+              <div class="status-row">
+                <div><strong>Nexans</strong><span>Cables HT - contact expertise</span></div>
+                <span class="badge warn">A surveiller</span>
+              </div>
+              <div class="status-row">
+                <div><strong>Schneider</strong><span>Infos fabricants disponibles</span></div>
+                <span class="badge info">Info utile</span>
+              </div>
+              <div class="status-row">
+                <div><strong>Legrand</strong><span>Support PLV actualise</span></div>
+                <span class="badge ok">OK</span>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <div class="canvas-note"><span class="canvas-dot"></span> Section 3 colonnes - contribution, contacts, onboarding</div>
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Ce que la V1 doit vraiment stabiliser</h2>
+              <p class="card-subtitle">Trois entrees simples pour reduire les mails et la dependance aux personnes.</p>
+            </div>
+            <span class="tag">V1 terrain</span>
+          </div>
+          <div class="card-body question-grid">
+            <article class="question-card">
+              <div>
+                <strong>Boite a questions</strong>
+                <p>Poser une question, partager une bonne idee ou remonter un irritant sans creer un outil de ticketing.</p>
+              </div>
+              <a class="mini-link" href="#">Contribuer</a>
+            </article>
+            <article class="question-card">
+              <div>
+                <strong>Qui contacter ?</strong>
+                <p>Retrouver le bon interlocuteur par sujet : commerce, support, fournisseur, procedure, expertise.</p>
+              </div>
+              <a class="mini-link" href="#">Chercher un contact</a>
+            </article>
+            <article class="question-card">
+              <div>
+                <strong>Onboarding / Soon</strong>
+                <p>Donner les bons liens et modeles sans refaire une plateforme de formation.</p>
+              </div>
+              <a class="mini-link" href="#">Voir les reperes</a>
+            </article>
+          </div>
+        </section>
+
+        <p class="footer-note">
+          V1 volontairement limitee : pas de dashboard KPI, pas de Pixel bis, pas de referentiel fournisseur complet, pas de Power Apps obligatoire au demarrage.
+        </p>
+      </main>
+    </div>
+  </body>
+</html>

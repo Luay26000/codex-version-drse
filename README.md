@@ -40,3 +40,8 @@ npm test
 Le tutoriel de reproduction SharePoint se trouve ici :
 
 - `docs/tutoriel_reproduction_sharepoint_portail_drse_A_Z.md`
+
+## Maquettes
+
+- V2 cible React : application principale du dépôt.
+- V1 réaliste statique : `maquettes/drse-v1-realiste/index.html`

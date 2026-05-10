@@ -242,7 +242,6 @@ export const audienceProfiles: Record<AudienceId, AudienceProfile> = {
       { label: "Qlik", desc: "Pilotage chiffré existant" },
       { label: "Kezako", desc: "Procédures et repères internes" },
       { label: "Boîte à questions", desc: "Remonter un irritant ou poser une question" },
-      { label: "Rexel GPT", desc: "Assistance IA interne" },
     ],
     dashboard: [
       {
@@ -264,9 +263,9 @@ export const audienceProfiles: Record<AudienceId, AudienceProfile> = {
         ],
       },
       {
-        title: "Fournisseurs / fabricants",
+        title: "Alertes utiles",
         cards: [
-          { name: "Fournisseurs & fabricants", desc: "Disponibilités et vigilances utiles", action: "Voir", to: "/fournisseurs" },
+          { name: "Impact agence", desc: "Afficher seulement les alertes fournisseurs ou supports qui demandent une action agence", action: "Voir", to: "/fournisseurs" },
         ],
       },
       {
@@ -307,20 +306,15 @@ export const audienceProfiles: Record<AudienceId, AudienceProfile> = {
         { label: "Boîte à questions commerce", to: "/idees" },
       ],
       fournisseurs: [
-        { label: "Disponibilité", to: "/fournisseurs" },
-        { label: "Vigilance", to: "/fournisseurs" },
+        { label: "Alertes avec impact agence", to: "/fournisseurs" },
         { label: "Contact interne", to: "/expertises" },
         { label: "Lien source", to: "/fournisseurs" },
-        { label: "Infos fabricants", to: "/fournisseurs" },
       ],
       onboarding: [
         { label: "Livre sécurité", href: "#" },
         { label: "Liens RH agence", href: "#" },
         { label: "Kezako", href: "#" },
-        { label: "Soon", href: "#" },
         { label: "Modes opératoires", to: "/onboarding" },
-        { label: "Parcours 30 jours", to: "/onboarding" },
-        { label: "Contacts onboarding", to: "/expertises" },
       ],
       expertises: [
         { label: "Qui contacter pour…", to: "/expertises" },

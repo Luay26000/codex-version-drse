@@ -125,8 +125,8 @@ export const pageConfigByAudience: Record<AudienceId, PageConfig> = {
   },
   agence: {
     commerce: { message: "Vue RA — opérations, Yoobic, merchandising et supports à relayer sans fouiller les mails.", featuredOps: ["Printemps Énergie 2026", "Challenge réseau Éclairage"], pinnedSupports: ["Kit commercial Printemps Énergie", "PLV éclairage industriel — A3", "Fiche merchandising / Game Agence"], pinnedContacts: ["Laurent Martin", "Marc Dupont"] },
-    fournisseurs: { message: "Disponibilités utiles à votre agence.", featuredCodes: ["SCH001", "LEG002", "HAG003"], defaultFilter: "Disponibilité", pinnedFabricants: ["Schneider Electric", "Hager", "Legrand"] },
-    onboarding: { message: "Repères RA — sécurité, RH, procédures courtes et parcours d'intégration.", featuredTemplates: ["Livre sécurité agence", "Lien RH — mutuelle et prévoyance", "Plan d'action 30 jours"], featuredModes: ["Retrouver une procédure sécurité", "Trouver un contact RH", "Préparer une visite client"], featuredSoon: ["Soon — Parcours nouveau collaborateur"] },
+    fournisseurs: { message: "Alertes seulement si impact agence direct.", featuredCodes: ["LEG002"], defaultFilter: "Impact agence", pinnedFabricants: ["Legrand"] },
+    onboarding: { message: "Repères RA — sécurité, RH et procédures courtes, sans refaire Soon.", featuredTemplates: ["Livre sécurité agence", "Lien RH — mutuelle et prévoyance"], featuredModes: ["Retrouver une procédure sécurité", "Trouver un contact RH", "Préparer une visite client"], featuredSoon: [] },
     expertises: { message: "Qui contacter pour vos sujets agence.", featuredContacts: ["L. Martin", "S. Bernard", "P. Leroy"], featuredFiches: ["Éclairage", "Digital / outils"] },
     idees: { message: "Vos remontées terrain, idées agence et irritants outils / sécurité / RH.", featuredThemes: ["Commerce", "Outils", "Sécurité", "RH"], featuredTypes: ["Irritant terrain", "Suggestion d'amélioration"] },
     mesAcces: {

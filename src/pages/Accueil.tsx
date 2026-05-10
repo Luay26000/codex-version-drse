@@ -185,11 +185,17 @@ export default function Accueil() {
 
             <Section title="Assistance rapide" webpart="Lien web / Application Teams">
               <div className="space-y-3">
-                {[
-                  { icon: Sparkles, label: "Rexel GPT", sub: "Aide à la recherche et à la formulation" },
-                  { icon: Box, label: "Mes sites", sub: "Sites SharePoint suivis ou fréquents" },
-                  { icon: Users, label: "Qui contacter ?", sub: "Contacts clés et expertises" },
-                ].map((item) => (
+                {(audienceId === "agence"
+                  ? [
+                      { icon: Users2, label: "CRM", sub: "Clients, opportunités et suivi commercial" },
+                      { icon: BookOpen, label: "Kezako", sub: "Procédures et repères internes" },
+                      { icon: Users, label: "Qui contacter ?", sub: "Contacts utiles par sujet" },
+                    ]
+                  : [
+                      { icon: Sparkles, label: "Rexel GPT", sub: "Aide à la recherche et à la formulation" },
+                      { icon: Box, label: "Mes sites", sub: "Sites SharePoint suivis ou fréquents" },
+                      { icon: Users, label: "Qui contacter ?", sub: "Contacts clés et expertises" },
+                    ]).map((item) => (
                   <a key={item.label} href="#" className="flex items-start gap-3 rounded border border-border p-3 hover:border-secondary">
                     <item.icon className="mt-0.5 h-4 w-4 text-secondary" />
                     <span className="min-w-0">

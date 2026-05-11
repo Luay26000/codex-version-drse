@@ -119,6 +119,65 @@
         padding: 24px;
       }
 
+      .page-intro {
+        scroll-margin-top: 86px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 18px 20px;
+        margin-bottom: 18px;
+      }
+
+      .page-intro h1 {
+        margin: 4px 0 0;
+        color: var(--rexel-blue);
+        font-size: 30px;
+        line-height: 1.14;
+        letter-spacing: 0;
+      }
+
+      .page-intro p {
+        margin: 8px 0 0;
+        max-width: 840px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .page-intro .hero-panel {
+        display: none;
+      }
+
+      .page-intro .hero-panel-title {
+        color: var(--rexel-light-blue);
+        margin-bottom: 6px;
+      }
+
+      .page-intro .hero-actions {
+        margin-top: 0;
+        flex: 0 0 auto;
+        align-self: flex-end;
+      }
+
+      .page-kicker {
+        color: var(--rexel-light-blue);
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+
+      .intro-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
       .hero {
         position: relative;
         overflow: hidden;
@@ -177,6 +236,12 @@
       .button.secondary {
         border-color: rgba(255, 255, 255, 0.38);
         color: white;
+      }
+
+      .page-intro .button.secondary {
+        border-color: var(--line);
+        color: var(--rexel-blue);
+        background: #fff;
       }
 
       .hero-panel {
@@ -778,6 +843,15 @@
           padding: 24px;
         }
 
+        .page-intro {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .intro-actions {
+          justify-content: flex-start;
+        }
+
         .nav {
           justify-content: flex-start;
         }
@@ -815,15 +889,13 @@
       </header>
 
       <main class="page">
-        <section class="hero" id="accueil">
+        <section class="page-intro" id="accueil">
           <div>
             <div class="hero-panel-title">Direction Regionale Sud-Est - Reseau</div>
-            <h1>Le raccourci utile du responsable d’agence.</h1>
+            <h1>Accueil responsable d'agence</h1>
             <p>
-              Une V1 volontairement plus courte : securite, RH, operations commerciales,
-              Yoobic / merchandising, outils RA, contacts et questions terrain. Les sujets
-              secondaires restent dans les outils sources. L'ancien SharePoint sert
-              d'inventaire a qualifier, pas de modele a recopier en entier.
+              Acces rapides, operations, contacts et sources utiles pour les responsables
+              d'agence. L'ancien SharePoint sert d'inventaire a qualifier, pas de catalogue a recopier.
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#outils-ra">Acceder aux outils</a>

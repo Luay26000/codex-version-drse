@@ -34,6 +34,10 @@
         line-height: 1.45;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       a {
         color: inherit;
         text-decoration: none;
@@ -273,6 +277,7 @@
         border: 1px solid var(--line);
         border-radius: 8px;
         overflow: hidden;
+        scroll-margin-top: 86px;
       }
 
       .card-header {
@@ -344,6 +349,10 @@
 
       .tool-card:hover {
         border-color: var(--rexel-light-blue);
+      }
+
+      [data-placeholder] {
+        cursor: pointer;
       }
 
       .tool-icon {
@@ -625,6 +634,43 @@
         justify-content: space-between;
       }
 
+      .toast {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 20;
+        max-width: min(420px, calc(100vw - 36px));
+        border: 1px solid rgba(10, 40, 125, 0.18);
+        border-left: 4px solid var(--rexel-blue);
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 18px 44px rgba(16, 24, 40, 0.18);
+        padding: 14px 16px;
+        color: var(--text);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: 0.18s ease;
+      }
+
+      .toast.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .toast strong {
+        display: block;
+        color: var(--rexel-blue);
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .toast span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
       .question-card strong {
         color: var(--rexel-blue);
         font-size: 14px;
@@ -696,18 +742,18 @@
             </div>
           </div>
           <nav class="nav" aria-label="Navigation principale">
-            <a href="#" class="active">Accueil</a>
-            <a href="#">Securite / RH</a>
-            <a href="#">Commerce</a>
-            <a href="#">Outils RA</a>
-            <a href="#">Questions</a>
-            <a href="#">Contacts</a>
+            <a href="#accueil" class="active">Accueil</a>
+            <a href="#securite-rh">Securite / RH</a>
+            <a href="#commerce">Commerce</a>
+            <a href="#outils-ra">Outils RA</a>
+            <a href="#questions">Questions</a>
+            <a href="#contacts">Contacts</a>
           </nav>
         </div>
       </header>
 
       <main class="page">
-        <section class="hero">
+        <section class="hero" id="accueil">
           <div>
             <div class="hero-panel-title">Direction Regionale Sud-Est - Reseau</div>
             <h1>Le raccourci utile du responsable d’agence.</h1>
@@ -717,8 +763,8 @@
               secondaires restent dans les outils sources.
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="#">Acceder aux outils</a>
-              <a class="button secondary" href="#">Voir l’operation du moment</a>
+              <a class="button primary" href="#outils-ra">Acceder aux outils</a>
+              <a class="button secondary" href="#commerce">Voir l’operation du moment</a>
             </div>
           </div>
           <aside class="hero-panel" aria-label="Plan de deploiement">
@@ -748,7 +794,7 @@
         </section>
 
         <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - 2/3 acces + 1/3 priorites</div>
-        <section class="grid-12">
+        <section class="grid-12" id="pilotage-ra">
           <div class="card span-8">
             <div class="card-header">
               <div>
@@ -758,27 +804,27 @@
               <span class="tag">Tableau de bord</span>
             </div>
             <div class="card-body dashboard-grid">
-              <a class="tool-card" href="#">
+              <a class="tool-card" href="#securite-rh">
                 <div class="tool-icon">SEC</div>
                 <div><strong>Securite</strong><span>Livre securite, bonnes pratiques, reflexes</span></div>
               </a>
-              <a class="tool-card" href="#">
+              <a class="tool-card" href="#securite-rh">
                 <div class="tool-icon">RH</div>
                 <div><strong>RH</strong><span>Mutuelle, prevoyance, liaisons RH</span></div>
               </a>
-              <a class="tool-card" href="#">
+              <a class="tool-card" href="#commerce">
                 <div class="tool-icon">COM</div>
                 <div><strong>Commerce</strong><span>Operations, supports, calendrier Gregoire</span></div>
               </a>
-              <a class="tool-card" href="#">
+              <a class="tool-card" href="#terrain">
                 <div class="tool-icon">Y</div>
                 <div><strong>Yoobic</strong><span>Animations et execution terrain</span></div>
               </a>
-              <a class="tool-card" href="#">
+              <a class="tool-card" href="#terrain">
                 <div class="tool-icon">MER</div>
                 <div><strong>Merchandising</strong><span>Game Agence, immo, gondoles, dispositifs</span></div>
               </a>
-              <a class="tool-card" href="#">
+              <a class="tool-card" href="#outils-ra">
                 <div class="tool-icon">OUT</div>
                 <div><strong>Outils RA</strong><span>CRM, Qlik, Kezako, configurateur</span></div>
               </a>
@@ -794,15 +840,15 @@
               <span class="tag">Focus</span>
             </div>
             <div class="card-body rail-list">
-              <a class="rail-item" href="#">
+              <a class="rail-item" href="#questions">
                 <strong>RA d'abord</strong>
                 <span>Le portail doit servir celui qui traite le plus de sujets avec le moins de temps.</span>
               </a>
-              <a class="rail-item" href="#">
+              <a class="rail-item" href="#pilotage-ra">
                 <strong>80-90% du besoin</strong>
                 <span>Une V1 utile et maintenable vaut mieux qu'une V2 trop complete.</span>
               </a>
-              <a class="rail-item" href="#">
+              <a class="rail-item" href="#" data-placeholder="Dans SharePoint, ce lien pointera vers la page de demande d'acces proprietaire ou le ticket support Smart.">
                 <strong>Acces proprietaire</strong>
                 <span>A obtenir pour tester ciblage, listes, themes et navigation.</span>
               </a>
@@ -811,7 +857,7 @@
         </section>
 
         <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - securite / RH + outils RA</div>
-        <section class="grid-12">
+        <section class="grid-12" id="securite-rh">
           <div class="card span-6">
             <div class="card-header">
               <div>
@@ -836,7 +882,7 @@
             </div>
           </div>
 
-          <div class="card span-6">
+          <div class="card span-6" id="outils-ra">
             <div class="card-header">
               <div>
                 <h2 class="card-title">Outils RA</h2>
@@ -845,16 +891,16 @@
               <span class="tag">Dashboard</span>
             </div>
             <div class="card-body dashboard-grid">
-              <a class="tool-card" href="#"><div class="tool-icon">CRM</div><div><strong>CRM</strong><span>Clients, opportunites, suivi commercial</span></div></a>
-              <a class="tool-card" href="#"><div class="tool-icon">QL</div><div><strong>Qlik</strong><span>Chiffres existants, pas de KPI bis</span></div></a>
-              <a class="tool-card" href="#"><div class="tool-icon">KD</div><div><strong>Kezako</strong><span>Procedures et modes operatoires</span></div></a>
-              <a class="tool-card" href="#"><div class="tool-icon">CF</div><div><strong>Configurateur</strong><span>Outil business a relier</span></div></a>
+              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers le CRM Rexel."><div class="tool-icon">CRM</div><div><strong>CRM</strong><span>Clients, opportunites, suivi commercial</span></div></a>
+              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers Qlik / QlikSense."><div class="tool-icon">QL</div><div><strong>Qlik</strong><span>Chiffres existants, pas de KPI bis</span></div></a>
+              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers Kezako, rubrique procedures utiles RA."><div class="tool-icon">KD</div><div><strong>Kezako</strong><span>Procedures et modes operatoires</span></div></a>
+              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers le configurateur digital."><div class="tool-icon">CF</div><div><strong>Configurateur</strong><span>Outil business a relier</span></div></a>
             </div>
           </div>
         </section>
 
         <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - 2/3 actus + 1/3 agenda</div>
-        <section class="grid-12">
+        <section class="grid-12" id="actualites">
           <div class="card span-8">
             <div class="card-header">
               <div>
@@ -868,7 +914,7 @@
                 <div class="news-visual"><span class="pill">Commerce</span></div>
                 <div class="news-content">
                   <div class="date">5 mai 2026</div>
-                  <strong>Operation commerciale en cours</strong>
+                  <a href="#commerce"><strong>Operation commerciale en cours</strong></a>
                   <p>Lien vers la source officielle et les supports associes.</p>
                 </div>
               </article>
@@ -876,7 +922,7 @@
                 <div class="news-visual"><span class="pill">Securite / RH</span></div>
                 <div class="news-content">
                   <div class="date">3 mai 2026</div>
-                  <strong>Rappel utile agence</strong>
+                  <a href="#securite-rh"><strong>Rappel utile agence</strong></a>
                   <p>Lien direct vers la source securite ou RH a consulter.</p>
                 </div>
               </article>
@@ -884,7 +930,7 @@
                 <div class="news-visual"><span class="pill">Terrain</span></div>
                 <div class="news-content">
                   <div class="date">29 avril 2026</div>
-                  <strong>Support terrain disponible</strong>
+                  <a href="#terrain"><strong>Support terrain disponible</strong></a>
                   <p>Acces au kit, au support PLV ou a la consigne d'animation.</p>
                 </div>
               </article>
@@ -926,7 +972,7 @@
         </section>
 
         <div class="canvas-note"><span class="canvas-dot"></span> Section flexible SharePoint - operation + alertes utiles</div>
-        <section class="grid-12">
+        <section class="grid-12" id="commerce">
           <div class="card span-8 operation">
             <div class="operation-visual">
               <div class="label">Operation du moment</div>
@@ -941,14 +987,14 @@
                 les sources autorisees.
               </p>
               <div class="mini-actions">
-                <a class="mini-link" href="#">Ouvrir le kit</a>
-                <a class="mini-link" href="#">Supports PLV</a>
-                <a class="mini-link" href="#">Calendrier Gregoire</a>
+                <a class="mini-link" href="#" data-placeholder="Lien a connecter vers la bibliotheque du kit operation.">Ouvrir le kit</a>
+                <a class="mini-link" href="#" data-placeholder="Lien a connecter vers le dossier supports PLV.">Supports PLV</a>
+                <a class="mini-link" href="#" data-placeholder="Lien a connecter vers le calendrier Gregoire.">Calendrier Gregoire</a>
               </div>
             </div>
           </div>
 
-          <aside class="card span-4">
+          <aside class="card span-4" id="alertes">
             <div class="card-header">
               <div>
                 <h2 class="card-title">Alertes utiles</h2>
@@ -974,7 +1020,7 @@
         </section>
 
         <div class="canvas-note"><span class="canvas-dot"></span> Section 3 colonnes - contribution, contacts, terrain</div>
-        <section class="card">
+        <section class="card" id="questions">
           <div class="card-header">
             <div>
               <h2 class="card-title">Ce que la V1 doit vraiment stabiliser</h2>
@@ -988,21 +1034,21 @@
                 <strong>Boite a questions</strong>
                 <p>Poser une question, partager une bonne idee ou remonter un irritant sans creer un outil de ticketing.</p>
               </div>
-              <a class="mini-link" href="#">Contribuer</a>
+              <a class="mini-link" href="#" data-placeholder="Dans SharePoint, ce bouton ouvrira Forms ou la Boite a idees.">Contribuer</a>
             </article>
-            <article class="question-card">
+            <article class="question-card" id="contacts">
               <div>
                 <strong>Qui contacter ?</strong>
                 <p>Retrouver le bon interlocuteur par sujet : commerce, securite/RH, procedure, expertise ou support.</p>
               </div>
-              <a class="mini-link" href="#">Chercher un contact</a>
+              <a class="mini-link" href="#" data-placeholder="Dans SharePoint, ce bouton pointera vers le trombinoscope ou la liste Contacts.">Chercher un contact</a>
             </article>
-            <article class="question-card">
+            <article class="question-card" id="terrain">
               <div>
                 <strong>Merchandising / Yoobic</strong>
                 <p>Retrouver les liens Game Agence, immo, dispositifs terrain et execution commerciale.</p>
               </div>
-              <a class="mini-link" href="#">Ouvrir les liens</a>
+              <a class="mini-link" href="#" data-placeholder="Liens a connecter vers Yoobic, Game Agence et les dossiers merchandising.">Ouvrir les liens</a>
             </article>
           </div>
         </section>
@@ -1011,6 +1057,37 @@
           V1 volontairement limitee : responsable d'agence en cible principale, pas de dashboard KPI, pas de Pixel bis, pas de referentiel fournisseur complet, pas de Power Apps obligatoire au demarrage.
         </p>
       </main>
+      <div class="toast" role="status" aria-live="polite">
+        <strong>Lien source a connecter</strong>
+        <span>Ce bouton indique l'emplacement futur dans SharePoint.</span>
+      </div>
     </div>
+    <script>
+      const toast = document.querySelector(".toast");
+      let toastTimer;
+
+      function showPlaceholder(message) {
+        if (!toast) return;
+        toast.querySelector("span").textContent = message || "Ce lien sera connecte dans SharePoint.";
+        toast.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("visible"), 3200);
+      }
+
+      document.addEventListener("click", (event) => {
+        const placeholder = event.target.closest("[data-placeholder]");
+        if (!placeholder) return;
+        event.preventDefault();
+        showPlaceholder(placeholder.dataset.placeholder);
+      });
+
+      const navLinks = [...document.querySelectorAll(".nav a")];
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.forEach((item) => item.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>

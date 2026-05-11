@@ -351,6 +351,10 @@
         border-color: var(--rexel-light-blue);
       }
 
+      .tool-card.source {
+        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      }
+
       [data-placeholder] {
         cursor: pointer;
       }
@@ -378,6 +382,62 @@
         margin-top: 3px;
         color: var(--muted);
         font-size: 11px;
+      }
+
+      .source-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .source-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .source-item {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        padding: 12px;
+        display: grid;
+        gap: 6px;
+      }
+
+      .source-item strong {
+        color: var(--rexel-blue);
+        font-size: 13px;
+      }
+
+      .source-item span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .source-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .source-chip {
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        background: #fff;
+        padding: 7px 10px;
+        font-size: 12px;
+        color: var(--text);
+      }
+
+      .decision-note {
+        margin-top: 12px;
+        border-left: 4px solid var(--rexel-light-blue);
+        background: var(--soft-blue);
+        border-radius: 6px;
+        padding: 12px;
+        color: var(--rexel-blue);
+        font-size: 12px;
+        line-height: 1.5;
       }
 
       .rail-list {
@@ -724,7 +784,8 @@
 
         .dashboard-grid,
         .news-grid,
-        .question-grid {
+        .question-grid,
+        .source-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -746,6 +807,7 @@
             <a href="#securite-rh">Securite / RH</a>
             <a href="#commerce">Commerce</a>
             <a href="#outils-ra">Outils RA</a>
+            <a href="#sources">Sources</a>
             <a href="#questions">Questions</a>
             <a href="#contacts">Contacts</a>
           </nav>
@@ -760,7 +822,8 @@
             <p>
               Une V1 volontairement plus courte : securite, RH, operations commerciales,
               Yoobic / merchandising, outils RA, contacts et questions terrain. Les sujets
-              secondaires restent dans les outils sources.
+              secondaires restent dans les outils sources. L'ancien SharePoint sert
+              d'inventaire a qualifier, pas de modele a recopier en entier.
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#outils-ra">Acceder aux outils</a>
@@ -788,6 +851,13 @@
               <div>
                 <strong>Elargissement</strong>
                 <span>Ajouter seulement les contenus maintenables.</span>
+              </div>
+            </div>
+            <div class="hero-step">
+              <div class="step-number">+</div>
+              <div>
+                <strong>Ancien SharePoint</strong>
+                <span>Reprendre l'esprit portail d'acces, pas le catalogue complet.</span>
               </div>
             </div>
           </aside>
@@ -826,7 +896,7 @@
               </a>
               <a class="tool-card" href="#outils-ra">
                 <div class="tool-icon">OUT</div>
-                <div><strong>Outils RA</strong><span>CRM, Qlik, Kezako, configurateur</span></div>
+                <div><strong>Outils RA</strong><span>CRM, Qlik, Pixel, Rexel One News</span></div>
               </a>
             </div>
           </div>
@@ -851,6 +921,10 @@
               <a class="rail-item" href="#" data-placeholder="Dans SharePoint, ce lien pointera vers la page de demande d'acces proprietaire ou le ticket support Smart.">
                 <strong>Acces proprietaire</strong>
                 <span>A obtenir pour tester ciblage, listes, themes et navigation.</span>
+              </a>
+              <a class="rail-item" href="#sources">
+                <strong>Ancien portail</strong>
+                <span>Des acces existent deja : on les trie avant de les afficher.</span>
               </a>
             </div>
           </aside>
@@ -891,10 +965,60 @@
               <span class="tag">Dashboard</span>
             </div>
             <div class="card-body dashboard-grid">
-              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers le CRM Rexel."><div class="tool-icon">CRM</div><div><strong>CRM</strong><span>Clients, opportunites, suivi commercial</span></div></a>
-              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers Qlik / QlikSense."><div class="tool-icon">QL</div><div><strong>Qlik</strong><span>Chiffres existants, pas de KPI bis</span></div></a>
-              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers Kezako, rubrique procedures utiles RA."><div class="tool-icon">KD</div><div><strong>Kezako</strong><span>Procedures et modes operatoires</span></div></a>
-              <a class="tool-card" href="#" data-placeholder="Lien source a connecter vers le configurateur digital."><div class="tool-icon">CF</div><div><strong>Configurateur</strong><span>Outil business a relier</span></div></a>
+              <a class="tool-card source" href="#" data-placeholder="Lien source a connecter vers Pixel / Annuaire Pixel."><div class="tool-icon">PX</div><div><strong>Pixel / Annuaire</strong><span>Point d'entree corporate et recherche interne</span></div></a>
+              <a class="tool-card source" href="#" data-placeholder="Lien source a connecter vers le CRM Rexel."><div class="tool-icon">CRM</div><div><strong>CRM Rexel UI</strong><span>Clients, opportunites, suivi commercial</span></div></a>
+              <a class="tool-card source" href="#" data-placeholder="Lien source a connecter vers Qliksense."><div class="tool-icon">QL</div><div><strong>Qliksense</strong><span>Reporting existant, pas de KPI bis</span></div></a>
+              <a class="tool-card source" href="#" data-placeholder="Lien source a connecter vers Kezako, rubrique procedures utiles RA."><div class="tool-icon">KZ</div><div><strong>Kezako</strong><span>Procedures et modes operatoires</span></div></a>
+              <a class="tool-card source" href="#" data-placeholder="Lien source a connecter vers Rexel One News ou la source d'actualites corporate."><div class="tool-icon">RN</div><div><strong>Rexel One News</strong><span>Actus corporate a filtrer, pas a recopier</span></div></a>
+              <a class="tool-card source" href="#" data-placeholder="Lien source a connecter vers les configurateurs utiles aux agences."><div class="tool-icon">CF</div><div><strong>Configurateurs</strong><span>Outils metier a qualifier par usage RA</span></div></a>
+            </div>
+          </div>
+        </section>
+
+        <div class="canvas-note"><span class="canvas-dot"></span> Section de cadrage metier - ancien SharePoint comme inventaire, pas comme catalogue a recopier</div>
+        <section class="card" id="sources">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Ce que l'ancien SharePoint nous apporte</h2>
+              <p class="card-subtitle">On reprend la logique de hub d'acces, mais on garde une V1 courte et validable.</p>
+            </div>
+            <span class="tag">A qualifier</span>
+          </div>
+          <div class="card-body source-grid">
+            <div class="source-list">
+              <div class="source-item">
+                <strong>Repris dans la V1</strong>
+                <span>Cartes d'acces, liens vers les outils sources, actualites redirigees, documents/supports et contacts utiles.</span>
+              </div>
+              <div class="source-item">
+                <strong>Limite volontaire</strong>
+                <span>Pas de menu lateral geant, pas de copie de Pixel, pas de page pour chaque outil, pas d'usage invente.</span>
+              </div>
+              <div class="source-item">
+                <strong>Question de validation</strong>
+                <span>Quels acces de l'ancien portail servent encore vraiment aux responsables d'agence Sud-Est ?</span>
+              </div>
+            </div>
+            <div>
+              <div class="source-chips">
+                <span class="source-chip">Mercure</span>
+                <span class="source-chip">KDS</span>
+                <span class="source-chip">Bonita</span>
+                <span class="source-chip">E-SNC2</span>
+                <span class="source-chip">FTP National</span>
+                <span class="source-chip">Legisway</span>
+                <span class="source-chip">Web Manager</span>
+                <span class="source-chip">Pico-Carem</span>
+                <span class="source-chip">Yammer</span>
+                <span class="source-chip">Documents</span>
+                <span class="source-chip">SuccessFactors</span>
+                <span class="source-chip">Portail Reporting</span>
+              </div>
+              <div class="decision-note">
+                Ces acces restent hors V1 tant que leur usage RA n'est pas confirme.
+                Ils deviennent un support d'entretien pour le Business Analyst et les
+                metiers, pas une promesse fonctionnelle.
+              </div>
             </div>
           </div>
         </section>

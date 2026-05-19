@@ -36,6 +36,19 @@ Objectif : débloquer la vision produit avant de revenir à une version réalist
 | Vie du portail | Indicateur / Activité du site / Graphique rapide |
 | Chaîne d'usage | Image Interactive |
 
+## Liens réels intégrés
+
+Les accès ont été regroupés en quatre niveaux pour éviter une page catalogue.
+
+| Niveau | Liens |
+| --- | --- |
+| CŒUR | CRM Dynamics, Qlik Reporting, Kezako, Opérations commerciales |
+| P1 - Commerce | GetPaid, Merchandising, Comptoirs Gagnants, Gamme agence |
+| P2 - Cadre | Sécurité Commerce, Sécurité Logistique, SuccessFactors, Nouveau chef d'agence, Règles d'Or |
+| P3 - Spécialisé | Mercure, Digital |
+
+Le détail des URL est centralisé dans `liens_accessibles_portail_drse.md`.
+
 ## Lecture Power Apps
 
 Power Apps devient intéressant quand le besoin n'est plus seulement d'afficher de l'information, mais de guider, filtrer, enregistrer ou suivre une action.

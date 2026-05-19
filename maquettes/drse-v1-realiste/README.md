@@ -43,6 +43,19 @@ La page d'accueil est composee comme une page SharePoint moderne en sections fle
 | Fournisseurs | 1/3 droite | Liste SharePoint |
 | Contribution / contacts / onboarding | 3 colonnes | Boite a idees, Contacts, Bouton d'action |
 
+## Liens accessibles integres
+
+La V1 utilise maintenant les liens fonctionnels transmis, regroupes en niveaux de priorite :
+
+| Niveau | Liens |
+|---|---|
+| COEUR | CRM Dynamics, Qlik Reporting, Kezako, Operations commerciales |
+| P1 - Commerce | GetPaid, Merchandising, Comptoirs Gagnants, Gamme agence |
+| P2 - Cadre | Securite Commerce, Securite Logistique, SuccessFactors, Nouveau chef d'agence, Regles d'Or |
+| P3 - Specialise | Mercure, Digital |
+
+Cette organisation evite de recreer un catalogue Pixel complet : les liens coeur sont visibles en premier, les autres restent disponibles sans saturer la page.
+
 ## Pages V1 conseillees
 
 - Accueil

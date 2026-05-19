@@ -20,6 +20,12 @@ journal_de_bord_*.md
 oral_poc_*.md
 liens_accessibles_*.md
 
+# Public GitHub scope: keep only mockups tracked
+/*
+!/.gitignore
+!/maquettes/
+!/maquettes/**
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

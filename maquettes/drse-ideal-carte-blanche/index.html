@@ -1,0 +1,1598 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portail Regional Sud-Est - Carte blanche</title>
+  <style>
+    :root {
+      --rexel-blue: #0a287d;
+      --rexel-blue-2: #0967b2;
+      --rexel-light: #4487bd;
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --surface-soft: #edf3f8;
+      --border: #dfe6ef;
+      --text: #101828;
+      --muted: #5f6b7a;
+      --green: #009f8c;
+      --green-soft: #e8faf6;
+      --orange: #ff9d00;
+      --orange-soft: #fff4df;
+      --yellow: #ffdd00;
+      --purple: #75007e;
+      --purple-soft: #f6e9f7;
+      --danger: #c83532;
+      --danger-soft: #fff0ef;
+      --shadow: 0 10px 30px rgba(10, 40, 125, 0.08);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: auto minmax(280px, 620px) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 12px 22px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 18px rgba(16, 24, 40, 0.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 260px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 94px;
+      height: 34px;
+      background: var(--rexel-blue);
+      color: #fff;
+      border-radius: 3px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: lowercase;
+    }
+
+    .brand-title {
+      display: grid;
+      gap: 1px;
+    }
+
+    .brand-title strong {
+      font-size: 15px;
+    }
+
+    .brand-title span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search::before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      left: 14px;
+      border: 2px solid var(--rexel-blue-2);
+      border-radius: 50%;
+    }
+
+    .search::after {
+      content: "";
+      width: 7px;
+      height: 2px;
+      position: absolute;
+      left: 27px;
+      top: 28px;
+      background: var(--rexel-blue-2);
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
+    .search input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0 14px 0 44px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+
+    .search input:focus {
+      border-color: var(--rexel-light);
+      box-shadow: 0 0 0 3px rgba(68, 135, 189, 0.16);
+    }
+
+    .view-select {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 9px;
+      white-space: nowrap;
+    }
+
+    .view-select label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .view-select select {
+      min-height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0 34px 0 12px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .nav {
+      position: sticky;
+      top: 69px;
+      z-index: 19;
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      padding: 0 22px;
+      background: var(--rexel-blue);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 16px;
+      font-weight: 650;
+      font-size: 14px;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+    }
+
+    .nav a:hover,
+    .nav a:focus {
+      background: rgba(255, 255, 255, 0.12);
+      border-bottom-color: var(--yellow);
+      outline: none;
+    }
+
+    main {
+      width: min(1500px, calc(100% - 32px));
+      margin: 18px auto 44px;
+    }
+
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .status-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 1px 0 rgba(16, 24, 40, 0.03);
+    }
+
+    .status-pill span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status-pill strong {
+      color: var(--rexel-blue);
+      text-align: right;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(360px, 0.85fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-head h1,
+    .panel-head h2 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.2;
+    }
+
+    .panel-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel-tools {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .ghost-btn,
+    .primary-btn,
+    .quiet-btn {
+      min-height: 36px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      padding: 0 12px;
+      font-weight: 700;
+      background: #fff;
+      color: var(--rexel-blue);
+    }
+
+    .primary-btn {
+      border-color: var(--yellow);
+      background: var(--yellow);
+      color: #0b1b40;
+    }
+
+    .quiet-btn {
+      color: var(--muted);
+      background: var(--bg);
+    }
+
+    .ghost-btn:hover,
+    .quiet-btn:hover,
+    .primary-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(10, 40, 125, 0.12);
+    }
+
+    .priority-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .priority-card,
+    .tool-card,
+    .timeline-item,
+    .contact-card,
+    .idea-card,
+    .metric-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .priority-card {
+      min-height: 168px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 13px 0;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--rexel-blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .label.green {
+      background: var(--green-soft);
+      color: #006f62;
+    }
+
+    .label.orange {
+      background: var(--orange-soft);
+      color: #945500;
+    }
+
+    .label.purple {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .label.red {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .card-body {
+      padding: 10px 13px;
+    }
+
+    .card-body h3 {
+      margin: 0 0 7px;
+      font-size: 18px;
+    }
+
+    .card-body p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 6px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .mini-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 0;
+      border-top: 1px solid #eef2f6;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 0 13px 13px;
+    }
+
+    .assistant {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .route-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .route-tab {
+      min-height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 750;
+      text-align: left;
+      padding: 0 12px;
+    }
+
+    .route-tab[aria-pressed="true"] {
+      border-color: var(--rexel-blue);
+      background: #eef5ff;
+      color: var(--rexel-blue);
+      box-shadow: inset 4px 0 0 var(--yellow);
+    }
+
+    .route-output {
+      min-height: 210px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+    }
+
+    .route-output h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .route-output p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .next-actions {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .next-actions li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      border-radius: 7px;
+      background: #fff;
+      border: 1px solid #e7edf5;
+      font-weight: 650;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      flex: 0 0 auto;
+    }
+
+    .dot.orange {
+      background: var(--orange);
+    }
+
+    .dot.blue {
+      background: var(--rexel-light);
+    }
+
+    .section {
+      margin-top: 14px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .col-8 {
+      grid-column: span 8;
+    }
+
+    .col-7 {
+      grid-column: span 7;
+    }
+
+    .col-6 {
+      grid-column: span 6;
+    }
+
+    .col-5 {
+      grid-column: span 5;
+    }
+
+    .col-4 {
+      grid-column: span 4;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .tool-card {
+      display: grid;
+      gap: 10px;
+      min-height: 132px;
+      padding: 13px;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--rexel-light);
+      box-shadow: 0 12px 20px rgba(10, 40, 125, 0.1);
+    }
+
+    .tool-card.is-recommended {
+      border-color: var(--rexel-blue);
+      box-shadow: inset 0 4px 0 var(--yellow);
+    }
+
+    .tool-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .tool-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 7px;
+      color: #fff;
+      background: var(--rexel-blue);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .tool-icon.green {
+      background: var(--green);
+    }
+
+    .tool-icon.orange {
+      background: var(--orange);
+      color: #111827;
+    }
+
+    .tool-icon.purple {
+      background: var(--purple);
+    }
+
+    .tool-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .tool-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .recommendation {
+      display: none;
+      color: var(--rexel-blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tool-card.is-recommended .recommendation {
+      display: inline;
+    }
+
+    .split-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 94px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+    }
+
+    .datebox {
+      display: grid;
+      place-items: center;
+      min-height: 66px;
+      border-radius: 7px;
+      background: var(--surface-soft);
+      color: var(--rexel-blue);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .datebox span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .contact-card {
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-card h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .people {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--rexel-blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .avatar.alt {
+      background: var(--green);
+    }
+
+    .avatar.warn {
+      background: var(--orange);
+      color: #111827;
+    }
+
+    .idea-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .idea-column {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-height: 280px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+    }
+
+    .idea-column h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--rexel-blue);
+    }
+
+    .idea-card {
+      padding: 10px;
+      display: grid;
+      gap: 7px;
+      background: #fff;
+    }
+
+    .idea-card strong {
+      font-size: 14px;
+    }
+
+    .idea-card span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .metric-card {
+      padding: 14px;
+      min-height: 118px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .metric-card strong {
+      font-size: 26px;
+      color: var(--rexel-blue);
+    }
+
+    .metric-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .meter {
+      height: 8px;
+      border-radius: 999px;
+      background: #edf1f5;
+      overflow: hidden;
+    }
+
+    .meter i {
+      display: block;
+      height: 100%;
+      background: var(--green);
+      border-radius: inherit;
+    }
+
+    .process-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .process-step {
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      min-height: 118px;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      width: 22px;
+      height: 2px;
+      background: var(--rexel-light);
+    }
+
+    .process-step:last-child::after {
+      display: none;
+    }
+
+    .process-step span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--rexel-blue);
+      color: #fff;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .process-step h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .process-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 40;
+      max-width: 360px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      background: #101828;
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(16, 24, 40, 0.25);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1180px) {
+      .topbar {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .view-select {
+        justify-content: flex-start;
+      }
+
+      .nav {
+        top: 168px;
+      }
+
+      .board,
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .col-4,
+      .col-5,
+      .col-6,
+      .col-7,
+      .col-8 {
+        grid-column: auto;
+      }
+
+      .tools-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100% - 20px, 1500px);
+      }
+
+      .nav {
+        top: 183px;
+      }
+
+      .status-strip,
+      .priority-grid,
+      .tools-grid,
+      .split-body,
+      .contacts-grid,
+      .idea-board,
+      .metrics-grid,
+      .process-row {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .process-step::after {
+        display: none;
+      }
+
+      .panel-head {
+        display: grid;
+      }
+
+      .panel-tools {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">rexel</div>
+      <div class="brand-title">
+        <strong>Portail Régional Sud-Est</strong>
+        <span>Poste de travail régional</span>
+      </div>
+    </div>
+
+    <label class="search" aria-label="Recherche globale">
+      <input id="globalSearch" type="search" placeholder="Rechercher un outil, support, contact, opération, procédure..." />
+    </label>
+
+    <div class="view-select">
+      <label for="roleSelect">Vue</label>
+      <select id="roleSelect">
+        <option value="ra">Responsable d'agence</option>
+        <option value="commerce">Commerce / RACOR</option>
+        <option value="direction">Direction / COPIL DP</option>
+        <option value="assistante">Assistante de pôle</option>
+        <option value="expertise">Expertise / IAS</option>
+      </select>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#bureau">Bureau du jour</a>
+    <a href="#outils">Outils</a>
+    <a href="#commerce">Commerce</a>
+    <a href="#contacts">Contacts</a>
+    <a href="#terrain">Terrain</a>
+    <a href="#pilotage">Vie du portail</a>
+  </nav>
+
+  <main>
+    <div class="status-strip">
+      <div class="status-pill searchable">
+        <span>Dernière mise à jour</span>
+        <strong>Aujourd'hui 09:10</strong>
+      </div>
+      <div class="status-pill searchable">
+        <span>Opération prioritaire</span>
+        <strong>Printemps énergie</strong>
+      </div>
+      <div class="status-pill searchable">
+        <span>Questions terrain</span>
+        <strong>8 à traiter</strong>
+      </div>
+      <div class="status-pill searchable">
+        <span>Liens vérifiés</span>
+        <strong>92%</strong>
+      </div>
+    </div>
+
+    <section id="bureau" class="board">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h1>Bureau du jour</h1>
+            <p id="roleSummary">Priorités agence, supports utiles et points à suivre.</p>
+          </div>
+          <div class="panel-tools">
+            <button class="primary-btn" data-toast="Ouverture du kit prioritaire.">Kit prioritaire</button>
+            <button class="ghost-btn" data-toast="Ouverture du calendrier opérations.">Calendrier</button>
+          </div>
+        </div>
+
+        <div class="priority-grid" id="priorityGrid">
+          <article class="priority-card searchable" data-audience="ra commerce direction">
+            <div class="card-top">
+              <span class="label orange">Commerce</span>
+              <span class="label">J-5</span>
+            </div>
+            <div class="card-body">
+              <h3>Opération Printemps énergie</h3>
+              <p>Kit agence, argumentaire, PLV, dates de relais et contact animation.</p>
+              <ul class="mini-list">
+                <li><span>Kit agence</span><strong>Disponible</strong></li>
+                <li><span>PLV</span><strong>À relayer</strong></li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button class="primary-btn" data-toast="Kit opération ouvert.">Ouvrir</button>
+              <button class="quiet-btn" data-toast="Question commerce créée en brouillon.">Question</button>
+            </div>
+          </article>
+
+          <article class="priority-card searchable" data-audience="ra assistante direction">
+            <div class="card-top">
+              <span class="label red">Sécurité / RH</span>
+              <span class="label">Nouveau</span>
+            </div>
+            <div class="card-body">
+              <h3>Feuilles liaison et registre sécurité</h3>
+              <p>Documents RA à garder sous la main, avec circuit de mise à jour.</p>
+              <ul class="mini-list">
+                <li><span>Feuille liaison</span><strong>Modèle</strong></li>
+                <li><span>DUER / registre</span><strong>Source</strong></li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button class="ghost-btn" data-toast="Dossier sécurité ouvert.">Dossier</button>
+              <button class="quiet-btn" data-toast="Contact RH régional affiché.">Contact</button>
+            </div>
+          </article>
+
+          <article class="priority-card searchable" data-audience="ra expertise commerce direction">
+            <div class="card-top">
+              <span class="label purple">Fournisseurs</span>
+              <span class="label orange">Vigilance</span>
+            </div>
+            <div class="card-body">
+              <h3>Appro Schneider et Legrand</h3>
+              <p>Point disponibilité, messages fournisseurs, contact interne et support associé.</p>
+              <ul class="mini-list">
+                <li><span>Schneider</span><strong>À surveiller</strong></li>
+                <li><span>Legrand</span><strong>Info fabricant</strong></li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button class="ghost-btn" data-toast="Fiche vigilance fournisseur ouverte.">Voir</button>
+              <button class="quiet-btn" data-toast="Contact expertise prioritaire affiché.">Expert</button>
+            </div>
+          </article>
+
+          <article class="priority-card searchable" data-audience="ra commerce assistante direction">
+            <div class="card-top">
+              <span class="label green">Terrain</span>
+              <span class="label">8 sujets</span>
+            </div>
+            <div class="card-body">
+              <h3>Questions et bonnes pratiques</h3>
+              <p>Irritants, idées agence et demandes de clarification à traiter.</p>
+              <ul class="mini-list">
+                <li><span>Questions ouvertes</span><strong>8</strong></li>
+                <li><span>Bonnes idées</span><strong>3</strong></li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button class="primary-btn" data-toast="Nouvelle remontée ouverte.">Ajouter</button>
+              <button class="quiet-btn" data-toast="Tableau terrain ouvert.">Suivre</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Assistant d'orientation</h2>
+            <p>Accès direct au bon circuit.</p>
+          </div>
+        </div>
+        <div class="assistant">
+          <div class="route-tabs" role="group" aria-label="Choisir un besoin">
+            <button class="route-tab" data-route="outil" aria-pressed="true">Je cherche un outil</button>
+            <button class="route-tab" data-route="commerce" aria-pressed="false">Je relaie une opération</button>
+            <button class="route-tab" data-route="support" aria-pressed="false">J'ai une question</button>
+            <button class="route-tab" data-route="expert" aria-pressed="false">Je cherche un expert</button>
+            <button class="route-tab" data-route="terrain" aria-pressed="false">Je remonte un irritant</button>
+            <button class="route-tab" data-route="docs" aria-pressed="false">Je veux un modèle</button>
+          </div>
+          <div class="route-output" id="routeOutput"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="outils" class="section panel">
+      <div class="panel-head">
+        <div>
+          <h2>Accès intelligents</h2>
+          <p>Accès les plus utiles selon votre activité.</p>
+        </div>
+        <div class="panel-tools">
+            <button class="ghost-btn" data-toast="Tous les outils restent accessibles.">Voir tout</button>
+        </div>
+      </div>
+      <div class="tools-grid" id="toolsGrid">
+        <article class="tool-card searchable" data-audience="all ra assistante direction" data-tool="pixel">
+          <div class="tool-top"><span class="tool-icon">PX</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Pixel</h3>
+          <p>Intranet corporate et contenus nationaux.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="direction commerce" data-tool="qlik">
+          <div class="tool-top"><span class="tool-icon green">QL</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Qliksense</h3>
+          <p>Pilotage chiffré et tableaux existants.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="ra commerce expertise all" data-tool="crm">
+          <div class="tool-top"><span class="tool-icon">CRM</span><span class="recommendation">Prioritaire</span></div>
+          <h3>CRM REXEL UI</h3>
+          <p>Relation client, suivi commercial, opportunités.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="ra commerce" data-tool="yoobic">
+          <div class="tool-top"><span class="tool-icon orange">YO</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Yoobic</h3>
+          <p>Animation terrain, merchandising et exécution.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="commerce" data-tool="pico">
+          <div class="tool-top"><span class="tool-icon purple">PC</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Pico</h3>
+          <p>Variables commerciaux.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="all ra assistante" data-tool="kezako">
+          <div class="tool-top"><span class="tool-icon green">KZ</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Kezako</h3>
+          <p>Base d'information et ressources internes.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="assistante ra" data-tool="soon">
+          <div class="tool-top"><span class="tool-icon">SO</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Soon</h3>
+          <p>Parcours d'intégration et formation.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="all expertise ra" data-tool="gpt">
+          <div class="tool-top"><span class="tool-icon purple">AI</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Rexel GPT</h3>
+          <p>Aide à la recherche et à la formulation.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="expertise commerce ra" data-tool="config">
+          <div class="tool-top"><span class="tool-icon orange">CF</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Configurateurs</h3>
+          <p>Accès aux configurateurs et supports de choix.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="assistante direction" data-tool="success">
+          <div class="tool-top"><span class="tool-icon">SF</span><span class="recommendation">Prioritaire</span></div>
+          <h3>SuccessFactors</h3>
+          <p>Accès RH et démarches collaborateurs.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="all ra commerce direction" data-tool="news">
+          <div class="tool-top"><span class="tool-icon green">RN</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Rexel One News</h3>
+          <p>Actualités groupe et France.</p>
+        </article>
+        <article class="tool-card searchable" data-audience="assistante commerce" data-tool="bonita">
+          <div class="tool-top"><span class="tool-icon purple">BO</span><span class="recommendation">Prioritaire</span></div>
+          <h3>Bonita</h3>
+          <p>Circuits de demande et processus internes.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="section section-grid">
+      <section id="commerce" class="panel col-8">
+        <div class="panel-head">
+          <div>
+            <h2>Plan commercial régional</h2>
+            <p>Opérations, kits, supports et échéances terrain.</p>
+          </div>
+          <div class="panel-tools">
+            <button class="primary-btn" data-toast="Calendrier Grégoire ouvert.">Calendrier Grégoire</button>
+          </div>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item searchable" data-audience="ra commerce direction">
+            <div class="datebox">24<span>mai</span></div>
+            <div>
+              <h3>Printemps énergie - relais agences</h3>
+              <p>Kit opération, argumentaire court, PLV, contact RACOR.</p>
+            </div>
+            <span class="label orange">À relayer</span>
+          </article>
+          <article class="timeline-item searchable" data-audience="commerce direction">
+            <div class="datebox">29<span>mai</span></div>
+            <div>
+              <h3>Revue animation commerciale</h3>
+              <p>Points de blocage, supports manquants, arbitrages régionaux.</p>
+            </div>
+            <span class="label">Pilotage</span>
+          </article>
+          <article class="timeline-item searchable" data-audience="ra expertise commerce">
+            <div class="datebox">03<span>juin</span></div>
+            <div>
+              <h3>Info fabricant - nouveautés habitat connecté</h3>
+              <p>Fiche synthèse, contacts expertise, supports associés.</p>
+            </div>
+            <span class="label purple">Fabricants</span>
+          </article>
+          <article class="timeline-item searchable" data-audience="ra assistante">
+            <div class="datebox">07<span>juin</span></div>
+            <div>
+              <h3>Rappel documents agence</h3>
+              <p>Modèles mis à jour et documents à relayer auprès des équipes.</p>
+            </div>
+            <span class="label green">Agence</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel col-4">
+        <div class="panel-head">
+          <div>
+            <h2>Dossier du moment</h2>
+            <p>Tout ce qui sert pour agir vite.</p>
+          </div>
+        </div>
+        <div class="split-body">
+          <article class="contact-card searchable">
+            <span class="label orange">Kit</span>
+            <h3>Argumentaire court</h3>
+            <p>Version agence, points forts, objections fréquentes.</p>
+            <button class="quiet-btn" data-toast="Argumentaire ouvert.">Ouvrir</button>
+          </article>
+          <article class="contact-card searchable">
+            <span class="label green">PLV</span>
+            <h3>Pack affichage</h3>
+            <p>Visuels agence, consignes de relais, dates clés.</p>
+            <button class="quiet-btn" data-toast="Pack PLV ouvert.">Ouvrir</button>
+          </article>
+          <article class="contact-card searchable">
+            <span class="label purple">Fournisseur</span>
+            <h3>Contact Legrand</h3>
+            <p>Référent interne et page source fabricant.</p>
+            <button class="quiet-btn" data-toast="Contact fournisseur affiché.">Voir</button>
+          </article>
+          <article class="contact-card searchable">
+            <span class="label">Suivi</span>
+            <h3>Questions liées</h3>
+            <p>Questions terrain rattachées à cette opération.</p>
+            <button class="quiet-btn" data-toast="Questions liées ouvertes.">Suivre</button>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="section section-grid">
+      <section id="contacts" class="panel col-7">
+        <div class="panel-head">
+          <div>
+            <h2>Qui contacter pour ?</h2>
+            <p>Routage par sujet, pôle et niveau de support.</p>
+          </div>
+        </div>
+        <div class="contacts-grid">
+          <article class="contact-card searchable" data-audience="ra commerce">
+            <span class="label orange">Animation commerciale</span>
+            <h3>Opérations, supports, calendrier</h3>
+            <p>Premier réflexe : RACOR / commerce régional.</p>
+            <div class="people"><span class="avatar">GR</span><span class="avatar alt">RA</span><span class="avatar warn">DP</span></div>
+          </article>
+          <article class="contact-card searchable" data-audience="ra assistante direction">
+            <span class="label red">Sécurité / RH</span>
+            <h3>Documents agence, registre, questions RH</h3>
+            <p>Référent pôle, RH régionale ou source nationale selon le sujet.</p>
+            <div class="people"><span class="avatar">RH</span><span class="avatar alt">AP</span></div>
+          </article>
+          <article class="contact-card searchable" data-audience="expertise ra commerce">
+            <span class="label purple">Expertise</span>
+            <h3>Technique, fabricant, solution client</h3>
+            <p>IAS / RES puis support fabricant si nécessaire.</p>
+            <div class="people"><span class="avatar">IAS</span><span class="avatar alt">RES</span><span class="avatar warn">FAB</span></div>
+          </article>
+          <article class="contact-card searchable" data-audience="assistante ra">
+            <span class="label green">Procédures</span>
+            <h3>Modèles, modes opératoires, onboarding</h3>
+            <p>Assistante de pôle, Soon, Kezako, modèles validés.</p>
+            <div class="people"><span class="avatar">AP</span><span class="avatar alt">SO</span><span class="avatar warn">KZ</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel col-5">
+        <div class="panel-head">
+          <div>
+            <h2>Fournisseurs à suivre</h2>
+            <p>Vigilances et infos utiles non sensibles.</p>
+          </div>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item searchable" data-audience="expertise direction ra">
+            <div class="datebox">V1<span>suivi</span></div>
+            <div>
+              <h3>Schneider Electric</h3>
+              <p>Disponibilité à surveiller, contact expertise identifié.</p>
+            </div>
+            <span class="label orange">Vigilance</span>
+          </article>
+          <article class="timeline-item searchable" data-audience="expertise commerce ra">
+            <div class="datebox">Info<span>fab</span></div>
+            <div>
+              <h3>Legrand</h3>
+              <p>Nouveauté fabricant et support commercial associé.</p>
+            </div>
+            <span class="label purple">Info</span>
+          </article>
+          <article class="timeline-item searchable" data-audience="commerce expertise">
+            <div class="datebox">OK<span>maj</span></div>
+            <div>
+              <h3>Hager</h3>
+              <p>Fiche source vérifiée, pas d'alerte régionale.</p>
+            </div>
+            <span class="label green">Stable</span>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <section id="terrain" class="section panel">
+      <div class="panel-head">
+        <div>
+          <h2>Questions et remontées terrain</h2>
+          <p>Statut visible, réponse courte, propriétaire identifié.</p>
+        </div>
+        <div class="panel-tools">
+          <button class="primary-btn" data-toast="Nouvelle remontée terrain ouverte.">Nouvelle remontée</button>
+        </div>
+      </div>
+      <div class="idea-board">
+        <div class="idea-column">
+          <h3>Reçu</h3>
+          <article class="idea-card searchable" data-audience="ra commerce">
+            <strong>PLV reçue trop tard en agence</strong>
+            <span>Responsables d'agence - Commerce</span>
+            <span class="label orange">À qualifier</span>
+          </article>
+          <article class="idea-card searchable" data-audience="assistante ra">
+            <strong>Modèle compte rendu pôle introuvable</strong>
+            <span>Assistantes - Procédures</span>
+            <span class="label">Document</span>
+          </article>
+        </div>
+        <div class="idea-column">
+          <h3>En cours</h3>
+          <article class="idea-card searchable" data-audience="ra direction">
+            <strong>Clarifier le circuit sécurité agence</strong>
+            <span>RA - RH régionale</span>
+            <span class="label red">Priorité</span>
+          </article>
+          <article class="idea-card searchable" data-audience="expertise commerce">
+            <strong>Fiche fabricant à rendre plus synthétique</strong>
+            <span>Expertise - Commerce</span>
+            <span class="label purple">Support</span>
+          </article>
+        </div>
+        <div class="idea-column">
+          <h3>Répondu</h3>
+          <article class="idea-card searchable" data-audience="ra assistante">
+            <strong>Où trouver les feuilles de liaison ?</strong>
+            <span>Réponse publiée dans Sécurité / RH</span>
+            <span class="label green">Publié</span>
+          </article>
+          <article class="idea-card searchable" data-audience="commerce ra">
+            <strong>Qui relance sur l'opération du mois ?</strong>
+            <span>Contact RACOR ajouté au dossier</span>
+            <span class="label green">Publié</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section section-grid">
+      <section id="pilotage" class="panel col-6">
+        <div class="panel-head">
+          <div>
+            <h2>Vie du portail</h2>
+            <p>Qualité, adoption et fraîcheur des contenus.</p>
+          </div>
+        </div>
+        <div class="metrics-grid">
+          <article class="metric-card searchable">
+            <strong>92%</strong>
+            <span>Liens vérifiés</span>
+            <div class="meter"><i style="width: 92%"></i></div>
+          </article>
+          <article class="metric-card searchable">
+            <strong>18</strong>
+            <span>Contenus à relire</span>
+            <div class="meter"><i style="width: 38%; background: var(--orange)"></i></div>
+          </article>
+          <article class="metric-card searchable">
+            <strong>41</strong>
+            <span>Questions traitées</span>
+            <div class="meter"><i style="width: 76%"></i></div>
+          </article>
+          <article class="metric-card searchable">
+            <strong>7</strong>
+            <span>Contacts à confirmer</span>
+            <div class="meter"><i style="width: 28%; background: var(--purple)"></i></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel col-6">
+        <div class="panel-head">
+          <div>
+            <h2>Chaîne d'usage</h2>
+            <p>Du besoin terrain à l'information retrouvable.</p>
+          </div>
+        </div>
+        <div class="process-row">
+          <article class="process-step searchable">
+            <span>1</span>
+            <h3>Trouver</h3>
+            <p>Outil, support, contact ou procédure depuis la recherche.</p>
+          </article>
+          <article class="process-step searchable">
+            <span>2</span>
+            <h3>Agir</h3>
+            <p>Kit, calendrier, document source, circuit métier.</p>
+          </article>
+          <article class="process-step searchable">
+            <span>3</span>
+            <h3>Remonter</h3>
+            <p>Question, irritant, bonne pratique ou besoin fournisseur.</p>
+          </article>
+          <article class="process-step searchable">
+            <span>4</span>
+            <h3>Suivre</h3>
+            <p>Statut, réponse, propriétaire, date de mise à jour.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const roleData = {
+      ra: {
+        summary: "Priorités agence : opérations, sécurité, outils RA, questions terrain.",
+        audiences: ["ra", "all"],
+        route: "commerce"
+      },
+      commerce: {
+        summary: "Priorités commerce : calendrier, kits, Yoobic, CRM, Pico et remontées.",
+        audiences: ["commerce", "all"],
+        route: "commerce"
+      },
+      direction: {
+        summary: "Priorités direction : opérations régionales, vigilances, synthèse terrain.",
+        audiences: ["direction", "all"],
+        route: "terrain"
+      },
+      assistante: {
+        summary: "Priorités assistante : modèles, procédures, Soon, contacts et relais pôle.",
+        audiences: ["assistante", "all"],
+        route: "docs"
+      },
+      expertise: {
+        summary: "Priorités expertise : fournisseurs, infos fabricants, contacts et supports techniques.",
+        audiences: ["expertise", "all"],
+        route: "expert"
+      }
+    };
+
+    const routeData = {
+      outil: {
+        title: "Accès outil",
+        text: "La recherche te propose l'outil source, son usage et le contact si l'accès bloque.",
+        actions: ["Ouvrir la fiche outil", "Voir les alternatives", "Signaler un lien cassé"]
+      },
+      commerce: {
+        title: "Relais opération commerciale",
+        text: "Le portail regroupe calendrier, kit, PLV, argumentaire et questions liées à l'opération.",
+        actions: ["Ouvrir le kit", "Voir le calendrier", "Poser une question commerce"]
+      },
+      support: {
+        title: "Question ou besoin d'aide",
+        text: "La demande est orientée selon le sujet : commerce, RH, sécurité, outil, expertise ou procédure.",
+        actions: ["Décrire la question", "Choisir un thème", "Suivre le statut"]
+      },
+      expert: {
+        title: "Recherche d'expertise",
+        text: "Le bon interlocuteur est proposé selon le domaine, le fournisseur et le niveau de besoin.",
+        actions: ["Trouver un contact", "Voir les fiches expertise", "Consulter les infos fabricants"]
+      },
+      terrain: {
+        title: "Remontée terrain",
+        text: "L'irritant ou la bonne idée garde un statut, un propriétaire et une réponse visible.",
+        actions: ["Créer la remontée", "Voir les sujets récurrents", "Partager une bonne pratique"]
+      },
+      docs: {
+        title: "Modèles et procédures",
+        text: "Les documents courts sont classés par usage : agence, pôle, RH, commerce, onboarding.",
+        actions: ["Ouvrir les modèles", "Voir les procédures", "Demander une mise à jour"]
+      }
+    };
+
+    const roleSelect = document.querySelector("#roleSelect");
+    const roleSummary = document.querySelector("#roleSummary");
+    const routeOutput = document.querySelector("#routeOutput");
+    const routeTabs = [...document.querySelectorAll(".route-tab")];
+    const toast = document.querySelector("#toast");
+    const searchInput = document.querySelector("#globalSearch");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function renderRoute(routeKey) {
+      const data = routeData[routeKey] || routeData.outil;
+      routeOutput.innerHTML = `
+        <h3>${data.title}</h3>
+        <p>${data.text}</p>
+        <ul class="next-actions">
+          ${data.actions.map((item, index) => `<li><span class="dot ${index === 1 ? "orange" : index === 2 ? "blue" : ""}"></span>${item}</li>`).join("")}
+        </ul>
+      `;
+
+      routeTabs.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.route === routeKey));
+      });
+    }
+
+    function audienceList(element) {
+      return (element.dataset.audience || "all").split(/\s+/).filter(Boolean);
+    }
+
+    function applyRole(role) {
+      const config = roleData[role] || roleData.ra;
+      roleSummary.textContent = config.summary;
+
+      document.querySelectorAll("[data-audience]").forEach((element) => {
+        const audiences = audienceList(element);
+        const recommended = audiences.includes(role) || audiences.includes("all");
+        element.classList.toggle("is-recommended", recommended && element.classList.contains("tool-card"));
+        element.style.order = recommended ? "0" : "10";
+      });
+
+      renderRoute(config.route);
+    }
+
+    function applySearch(query) {
+      const normalized = query.trim().toLowerCase();
+      document.querySelectorAll(".searchable").forEach((element) => {
+        const text = element.textContent.toLowerCase();
+        element.classList.toggle("hidden", Boolean(normalized) && !text.includes(normalized));
+      });
+    }
+
+    routeTabs.forEach((button) => {
+      button.addEventListener("click", () => renderRoute(button.dataset.route));
+    });
+
+    document.querySelectorAll("[data-toast]").forEach((button) => {
+      button.addEventListener("click", () => showToast(button.dataset.toast));
+    });
+
+    roleSelect.addEventListener("change", () => applyRole(roleSelect.value));
+    searchInput.addEventListener("input", () => applySearch(searchInput.value));
+
+    document.querySelectorAll(".tool-card").forEach((card) => {
+      card.addEventListener("click", () => showToast(`${card.querySelector("h3").textContent} : ouverture.`));
+      card.setAttribute("tabindex", "0");
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    applyRole(roleSelect.value);
+  </script>
+</body>
+</html>

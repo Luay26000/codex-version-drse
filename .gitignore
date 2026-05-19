@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Private working documents
+docs/
+*.docx
+rapport_stage_*.docx
+journal_de_bord_*.md
+oral_poc_*.md
+liens_accessibles_*.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

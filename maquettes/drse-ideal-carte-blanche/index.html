@@ -560,6 +560,30 @@
       padding: 14px;
     }
 
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 14px 14px 0;
+    }
+
+    .category-tab {
+      min-height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--muted);
+      padding: 0 11px;
+      font-weight: 800;
+    }
+
+    .category-tab[aria-selected="true"] {
+      border-color: var(--rexel-blue);
+      background: #eef5ff;
+      color: var(--rexel-blue);
+      box-shadow: inset 0 -3px 0 var(--yellow);
+    }
+
     .tool-card {
       display: grid;
       gap: 10px;
@@ -1199,78 +1223,85 @@
           <button class="ghost-btn" data-toast="Tous les outils restent accessibles.">Voir tout</button>
         </div>
       </div>
+      <div class="category-tabs" role="tablist" aria-label="Volets d'accès">
+        <button class="category-tab" type="button" data-tool-category="all" aria-selected="true">Tous</button>
+        <button class="category-tab" type="button" data-tool-category="coeur" aria-selected="false">CŒUR</button>
+        <button class="category-tab" type="button" data-tool-category="p1" aria-selected="false">P1 Commerce</button>
+        <button class="category-tab" type="button" data-tool-category="p2" aria-selected="false">P2 Cadre</button>
+        <button class="category-tab" type="button" data-tool-category="p3" aria-selected="false">P3 Spécialisé</button>
+      </div>
       <div class="tools-grid" id="toolsGrid">
-        <article class="tool-card searchable" data-audience="all ra commerce direction" data-tool="crm" data-url="https://rexelfrprod.crm4.dynamics.com/main.aspx">
+        <article class="tool-card searchable" data-category="coeur" data-audience="all ra commerce direction" data-tool="crm" data-url="https://rexelfrprod.crm4.dynamics.com/main.aspx">
           <div class="tool-top"><span class="tool-icon">CRM</span><span class="label green">CŒUR</span><span class="recommendation">Prioritaire</span></div>
           <h3>CRM Dynamics</h3>
           <p>Relation client, suivi commercial, opportunités.</p>
         </article>
-        <article class="tool-card searchable" data-audience="direction commerce all" data-tool="qlik" data-url="https://rexelfrance.eu.qlikcloud.com/">
+        <article class="tool-card searchable" data-category="coeur" data-audience="direction commerce all" data-tool="qlik" data-url="https://rexelfrance.eu.qlikcloud.com/">
           <div class="tool-top"><span class="tool-icon green">QL</span><span class="label green">CŒUR</span><span class="recommendation">Prioritaire</span></div>
           <h3>Qlik Reporting</h3>
           <p>Reporting et pilotage existant, sans recréer les KPI dans le portail.</p>
         </article>
-        <article class="tool-card searchable" data-audience="all ra assistante direction" data-tool="kezako" data-url="/sites/Kezako">
+        <article class="tool-card searchable" data-category="coeur" data-audience="all ra assistante direction" data-tool="kezako" data-url="/sites/Kezako">
           <div class="tool-top"><span class="tool-icon green">KZ</span><span class="label green">CŒUR</span><span class="recommendation">Prioritaire</span></div>
           <h3>Kezako</h3>
           <p>Ressources internes, procédures et informations de référence.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra commerce direction all" data-tool="operations" data-url="/sites/fr_pixel-marketing/SitePages/Opérations-promotionnell.aspx">
+        <article class="tool-card searchable" data-category="coeur" data-audience="ra commerce direction all" data-tool="operations" data-url="/sites/fr_pixel-marketing/SitePages/Opérations-promotionnell.aspx">
           <div class="tool-top"><span class="tool-icon orange">OP</span><span class="label green">CŒUR</span><span class="recommendation">Prioritaire</span></div>
           <h3>Opérations commerciales</h3>
           <p>Promotions, animations et informations commerciales à relayer.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra commerce" data-tool="getpaid" data-url="https://getpaid.france.rexel/">
+        <article class="tool-card searchable" data-category="p1" data-audience="ra commerce" data-tool="getpaid" data-url="https://getpaid.france.rexel/">
           <div class="tool-top"><span class="tool-icon purple">GP</span><span class="label orange">P1</span><span class="recommendation">Prioritaire</span></div>
           <h3>GetPaid</h3>
           <p>Suivi paiement et encours selon les accès disponibles.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra commerce" data-tool="merchandising" data-url="/sites/fr_pixel-marketing/SitePages/Merchandising.aspx">
+        <article class="tool-card searchable" data-category="p1" data-audience="ra commerce" data-tool="merchandising" data-url="/sites/fr_pixel-marketing/SitePages/Merchandising.aspx">
           <div class="tool-top"><span class="tool-icon orange">ME</span><span class="label orange">P1</span><span class="recommendation">Prioritaire</span></div>
           <h3>Merchandising</h3>
           <p>Supports merchandising et relais terrain.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra commerce" data-tool="comptoirs" data-url="/sites/fr_pixel-marketing/SitePages/Comptoirs-Gagnants.aspx">
+        <article class="tool-card searchable" data-category="p1" data-audience="ra commerce" data-tool="comptoirs" data-url="/sites/fr_pixel-marketing/SitePages/Comptoirs-Gagnants.aspx">
           <div class="tool-top"><span class="tool-icon orange">CG</span><span class="label orange">P1</span><span class="recommendation">Prioritaire</span></div>
           <h3>Comptoirs Gagnants</h3>
           <p>Animation commerciale dédiée aux agences.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra commerce assistante" data-tool="gamme" data-url="/sites/fr_GammeAgence/SitePages/Home.aspx">
+        <article class="tool-card searchable" data-category="p1" data-audience="ra commerce assistante" data-tool="gamme" data-url="/sites/fr_GammeAgence/SitePages/Home.aspx">
           <div class="tool-top"><span class="tool-icon orange">GA</span><span class="label orange">P1</span><span class="recommendation">Prioritaire</span></div>
           <h3>Gamme agence</h3>
           <p>Gammes, ressources et repères agence.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra assistante direction" data-tool="securite-commerce" data-url="/sites/fr_pixel-securite/SitePages/Page_Securite_Commerce.aspx">
+        <article class="tool-card searchable" data-category="p2" data-audience="ra assistante direction" data-tool="securite-commerce" data-url="/sites/fr_pixel-securite/SitePages/Page_Securite_Commerce.aspx">
           <div class="tool-top"><span class="tool-icon">SC</span><span class="label red">P2</span><span class="recommendation">Prioritaire</span></div>
           <h3>Sécurité Commerce</h3>
           <p>Référentiel sécurité pour les équipes commerce et agence.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra assistante direction" data-tool="securite-logistique" data-url="/sites/fr_pixel-securite/SitePages/Page_Securite_Logistique.aspx">
+        <article class="tool-card searchable" data-category="p2" data-audience="ra assistante direction" data-tool="securite-logistique" data-url="/sites/fr_pixel-securite/SitePages/Page_Securite_Logistique.aspx">
           <div class="tool-top"><span class="tool-icon">SL</span><span class="label red">P2</span><span class="recommendation">Prioritaire</span></div>
           <h3>Sécurité Logistique</h3>
           <p>Référentiel sécurité logistique et points de vigilance associés.</p>
         </article>
-        <article class="tool-card searchable" data-audience="assistante direction ra" data-tool="success" data-url="https://performancemanager4.successfactors.com/">
+        <article class="tool-card searchable" data-category="p2" data-audience="assistante direction ra" data-tool="success" data-url="https://performancemanager4.successfactors.com/">
           <div class="tool-top"><span class="tool-icon">SF</span><span class="label red">P2</span><span class="recommendation">Prioritaire</span></div>
           <h3>SuccessFactors</h3>
           <p>Accès RH et démarches collaborateurs.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra assistante direction" data-tool="nouveau-ca" data-url="/sites/fr_pixel-sgeneraux/SitePages/Nouveau-chef-dagence.aspx">
+        <article class="tool-card searchable" data-category="p2" data-audience="ra assistante direction" data-tool="nouveau-ca" data-url="/sites/fr_pixel-sgeneraux/SitePages/Nouveau-chef-dagence.aspx">
           <div class="tool-top"><span class="tool-icon green">NC</span><span class="label red">P2</span><span class="recommendation">Prioritaire</span></div>
           <h3>Nouveau chef d'agence</h3>
           <p>Repères d'onboarding pour prise de poste en agence.</p>
         </article>
-        <article class="tool-card searchable" data-audience="ra commerce assistante" data-tool="regles-or" data-url="/sites/fr_pixel-Commerce/SitePages/Règles-d’Or.aspx">
+        <article class="tool-card searchable" data-category="p2" data-audience="ra commerce assistante" data-tool="regles-or" data-url="/sites/fr_pixel-Commerce/SitePages/Règles-d’Or.aspx">
           <div class="tool-top"><span class="tool-icon green">RO</span><span class="label red">P2</span><span class="recommendation">Prioritaire</span></div>
           <h3>Règles d'Or</h3>
           <p>Cadre commerce et règles internes à retrouver vite.</p>
         </article>
-        <article class="tool-card searchable" data-audience="commerce expertise direction" data-tool="mercure" data-url="/sites/fr_pixel-mercure">
+        <article class="tool-card searchable" data-category="p3" data-audience="commerce expertise direction" data-tool="mercure" data-url="/sites/fr_pixel-mercure">
           <div class="tool-top"><span class="tool-icon purple">MC</span><span class="label purple">P3</span><span class="recommendation">Prioritaire</span></div>
           <h3>Mercure</h3>
           <p>Source spécialisée Pixel Mercure.</p>
         </article>
-        <article class="tool-card searchable" data-audience="expertise commerce direction" data-tool="digital" data-url="/sites/SharePointGrandSud/SitePages/Digital.aspx">
+        <article class="tool-card searchable" data-category="p3" data-audience="expertise commerce direction" data-tool="digital" data-url="/sites/SharePointGrandSud/SitePages/Digital.aspx">
           <div class="tool-top"><span class="tool-icon purple">DG</span><span class="label purple">P3</span><span class="recommendation">Prioritaire</span></div>
           <h3>Digital</h3>
           <p>Page digitale Grand Sud et ressources associées.</p>
@@ -1740,6 +1771,8 @@
     const routeTabs = [...document.querySelectorAll(".route-tab")];
     const toast = document.querySelector("#toast");
     const searchInput = document.querySelector("#globalSearch");
+    const categoryTabs = [...document.querySelectorAll(".category-tab")];
+    let activeToolCategory = "all";
 
     function showToast(message) {
       toast.textContent = message;
@@ -1781,11 +1814,13 @@
       renderRoute(config.route);
     }
 
-    function applySearch(query) {
-      const normalized = query.trim().toLowerCase();
+    function applyFilters() {
+      const normalized = searchInput.value.trim().toLowerCase();
       document.querySelectorAll(".searchable").forEach((element) => {
         const text = element.textContent.toLowerCase();
-        element.classList.toggle("hidden", Boolean(normalized) && !text.includes(normalized));
+        const matchesSearch = !normalized || text.includes(normalized);
+        const matchesCategory = !element.classList.contains("tool-card") || activeToolCategory === "all" || element.dataset.category === activeToolCategory;
+        element.classList.toggle("hidden", !matchesSearch || !matchesCategory);
       });
     }
 
@@ -1798,7 +1833,15 @@
     });
 
     roleSelect.addEventListener("change", () => applyRole(roleSelect.value));
-    searchInput.addEventListener("input", () => applySearch(searchInput.value));
+    searchInput.addEventListener("input", applyFilters);
+
+    categoryTabs.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeToolCategory = button.dataset.toolCategory;
+        categoryTabs.forEach((tab) => tab.setAttribute("aria-selected", String(tab === button)));
+        applyFilters();
+      });
+    });
 
     document.querySelectorAll(".tool-card").forEach((card) => {
       card.addEventListener("click", () => {

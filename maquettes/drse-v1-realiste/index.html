@@ -401,6 +401,34 @@
         gap: 10px;
       }
 
+      .access-tabs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+
+      .access-tab {
+        min-height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--muted);
+        padding: 0 10px;
+        font-weight: 750;
+      }
+
+      .access-tab[aria-selected="true"] {
+        border-color: var(--rexel-blue);
+        background: #eef5ff;
+        color: var(--rexel-blue);
+        box-shadow: inset 0 -3px 0 var(--yellow);
+      }
+
+      .access-hidden {
+        display: none !important;
+      }
+
       .tool-card {
         min-height: 106px;
         border: 1px solid var(--line);
@@ -990,22 +1018,31 @@
               </div>
               <span class="tag">WebPart Liens rapides</span>
             </div>
-            <div class="card-body dashboard-grid">
-              <a class="tool-card source" href="https://rexelfrprod.crm4.dynamics.com/main.aspx" target="_blank" rel="noopener"><div class="tool-icon">CRM</div><div><strong>CRM Dynamics</strong><span>COEUR - clients, opportunites, suivi commercial</span></div></a>
-              <a class="tool-card source" href="https://rexelfrance.eu.qlikcloud.com/" target="_blank" rel="noopener"><div class="tool-icon">QL</div><div><strong>Qlik Reporting</strong><span>COEUR - reporting existant</span></div></a>
-              <a class="tool-card source" href="/sites/Kezako" target="_blank" rel="noopener"><div class="tool-icon">KZ</div><div><strong>Kezako</strong><span>COEUR - procedures et ressources internes</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-marketing/SitePages/Opérations-promotionnell.aspx" target="_blank" rel="noopener"><div class="tool-icon">OP</div><div><strong>Operations commerciales</strong><span>COEUR - promotions et operations</span></div></a>
-              <a class="tool-card source" href="https://getpaid.france.rexel/" target="_blank" rel="noopener"><div class="tool-icon">GP</div><div><strong>GetPaid</strong><span>P1 - suivi paiement selon acces</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-marketing/SitePages/Merchandising.aspx" target="_blank" rel="noopener"><div class="tool-icon">MER</div><div><strong>Merchandising</strong><span>P1 - supports terrain</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-marketing/SitePages/Comptoirs-Gagnants.aspx" target="_blank" rel="noopener"><div class="tool-icon">CG</div><div><strong>Comptoirs Gagnants</strong><span>P1 - animation commerciale</span></div></a>
-              <a class="tool-card source" href="/sites/fr_GammeAgence/SitePages/Home.aspx" target="_blank" rel="noopener"><div class="tool-icon">GA</div><div><strong>Gamme agence</strong><span>P1 - ressources agence</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-securite/SitePages/Page_Securite_Commerce.aspx" target="_blank" rel="noopener"><div class="tool-icon">SC</div><div><strong>Securite Commerce</strong><span>P2 - referentiel securite</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-securite/SitePages/Page_Securite_Logistique.aspx" target="_blank" rel="noopener"><div class="tool-icon">SL</div><div><strong>Securite Logistique</strong><span>P2 - referentiel logistique</span></div></a>
-              <a class="tool-card source" href="https://performancemanager4.successfactors.com/" target="_blank" rel="noopener"><div class="tool-icon">SF</div><div><strong>SuccessFactors</strong><span>P2 - RH et collaborateurs</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-sgeneraux/SitePages/Nouveau-chef-dagence.aspx" target="_blank" rel="noopener"><div class="tool-icon">NC</div><div><strong>Nouveau chef d'agence</strong><span>P2 - onboarding chef d'agence</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-Commerce/SitePages/Règles-d’Or.aspx" target="_blank" rel="noopener"><div class="tool-icon">RO</div><div><strong>Regles d'Or</strong><span>P2 - cadre commerce</span></div></a>
-              <a class="tool-card source" href="/sites/fr_pixel-mercure" target="_blank" rel="noopener"><div class="tool-icon">MC</div><div><strong>Mercure</strong><span>P3 - source specialisee</span></div></a>
-              <a class="tool-card source" href="/sites/SharePointGrandSud/SitePages/Digital.aspx" target="_blank" rel="noopener"><div class="tool-icon">DG</div><div><strong>Digital</strong><span>P3 - page digitale Grand Sud</span></div></a>
+            <div class="card-body">
+              <div class="access-tabs" role="tablist" aria-label="Volets liens accessibles">
+                <button class="access-tab" type="button" data-access-tab="all" aria-selected="true">Tous</button>
+                <button class="access-tab" type="button" data-access-tab="coeur" aria-selected="false">COEUR</button>
+                <button class="access-tab" type="button" data-access-tab="p1" aria-selected="false">P1 Commerce</button>
+                <button class="access-tab" type="button" data-access-tab="p2" aria-selected="false">P2 Cadre</button>
+                <button class="access-tab" type="button" data-access-tab="p3" aria-selected="false">P3 Specialise</button>
+              </div>
+              <div class="dashboard-grid">
+                <a class="tool-card source" data-access-level="coeur" href="https://rexelfrprod.crm4.dynamics.com/main.aspx" target="_blank" rel="noopener"><div class="tool-icon">CRM</div><div><strong>CRM Dynamics</strong><span>COEUR - clients, opportunites, suivi commercial</span></div></a>
+                <a class="tool-card source" data-access-level="coeur" href="https://rexelfrance.eu.qlikcloud.com/" target="_blank" rel="noopener"><div class="tool-icon">QL</div><div><strong>Qlik Reporting</strong><span>COEUR - reporting existant</span></div></a>
+                <a class="tool-card source" data-access-level="coeur" href="/sites/Kezako" target="_blank" rel="noopener"><div class="tool-icon">KZ</div><div><strong>Kezako</strong><span>COEUR - procedures et ressources internes</span></div></a>
+                <a class="tool-card source" data-access-level="coeur" href="/sites/fr_pixel-marketing/SitePages/Opérations-promotionnell.aspx" target="_blank" rel="noopener"><div class="tool-icon">OP</div><div><strong>Operations commerciales</strong><span>COEUR - promotions et operations</span></div></a>
+                <a class="tool-card source" data-access-level="p1" href="https://getpaid.france.rexel/" target="_blank" rel="noopener"><div class="tool-icon">GP</div><div><strong>GetPaid</strong><span>P1 - suivi paiement selon acces</span></div></a>
+                <a class="tool-card source" data-access-level="p1" href="/sites/fr_pixel-marketing/SitePages/Merchandising.aspx" target="_blank" rel="noopener"><div class="tool-icon">MER</div><div><strong>Merchandising</strong><span>P1 - supports terrain</span></div></a>
+                <a class="tool-card source" data-access-level="p1" href="/sites/fr_pixel-marketing/SitePages/Comptoirs-Gagnants.aspx" target="_blank" rel="noopener"><div class="tool-icon">CG</div><div><strong>Comptoirs Gagnants</strong><span>P1 - animation commerciale</span></div></a>
+                <a class="tool-card source" data-access-level="p1" href="/sites/fr_GammeAgence/SitePages/Home.aspx" target="_blank" rel="noopener"><div class="tool-icon">GA</div><div><strong>Gamme agence</strong><span>P1 - ressources agence</span></div></a>
+                <a class="tool-card source" data-access-level="p2" href="/sites/fr_pixel-securite/SitePages/Page_Securite_Commerce.aspx" target="_blank" rel="noopener"><div class="tool-icon">SC</div><div><strong>Securite Commerce</strong><span>P2 - referentiel securite</span></div></a>
+                <a class="tool-card source" data-access-level="p2" href="/sites/fr_pixel-securite/SitePages/Page_Securite_Logistique.aspx" target="_blank" rel="noopener"><div class="tool-icon">SL</div><div><strong>Securite Logistique</strong><span>P2 - referentiel logistique</span></div></a>
+                <a class="tool-card source" data-access-level="p2" href="https://performancemanager4.successfactors.com/" target="_blank" rel="noopener"><div class="tool-icon">SF</div><div><strong>SuccessFactors</strong><span>P2 - RH et collaborateurs</span></div></a>
+                <a class="tool-card source" data-access-level="p2" href="/sites/fr_pixel-sgeneraux/SitePages/Nouveau-chef-dagence.aspx" target="_blank" rel="noopener"><div class="tool-icon">NC</div><div><strong>Nouveau chef d'agence</strong><span>P2 - onboarding chef d'agence</span></div></a>
+                <a class="tool-card source" data-access-level="p2" href="/sites/fr_pixel-Commerce/SitePages/Règles-d’Or.aspx" target="_blank" rel="noopener"><div class="tool-icon">RO</div><div><strong>Regles d'Or</strong><span>P2 - cadre commerce</span></div></a>
+                <a class="tool-card source" data-access-level="p3" href="/sites/fr_pixel-mercure" target="_blank" rel="noopener"><div class="tool-icon">MC</div><div><strong>Mercure</strong><span>P3 - source specialisee</span></div></a>
+                <a class="tool-card source" data-access-level="p3" href="/sites/SharePointGrandSud/SitePages/Digital.aspx" target="_blank" rel="noopener"><div class="tool-icon">DG</div><div><strong>Digital</strong><span>P3 - page digitale Grand Sud</span></div></a>
+              </div>
             </div>
           </div>
         </section>
@@ -1185,6 +1222,19 @@
         link.addEventListener("click", () => {
           navLinks.forEach((item) => item.classList.remove("active"));
           link.classList.add("active");
+        });
+      });
+
+      const accessTabs = [...document.querySelectorAll(".access-tab")];
+      const accessCards = [...document.querySelectorAll("[data-access-level]")];
+
+      accessTabs.forEach((button) => {
+        button.addEventListener("click", () => {
+          const level = button.dataset.accessTab;
+          accessTabs.forEach((tab) => tab.setAttribute("aria-selected", String(tab === button)));
+          accessCards.forEach((card) => {
+            card.classList.toggle("access-hidden", level !== "all" && card.dataset.accessLevel !== level);
+          });
         });
       });
     </script>

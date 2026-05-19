@@ -44,3 +44,13 @@ Inventaire propre des liens fonctionnels transmis pour construire une V1 plus ci
 - **P2** : cadre, sécurité, RH, onboarding et règles internes.
 - **P3** : accès spécialisés à garder disponibles, mais pas au premier niveau.
 
+## Représentation recommandée
+
+Ces catégories peuvent être présentées :
+
+- soit comme des onglets dans une même page ;
+- soit comme des pages / volets SharePoint séparés :
+  - Accueil / CŒUR ;
+  - Commerce / P1 ;
+  - Cadre / P2 ;
+  - Spécialisé / P3.

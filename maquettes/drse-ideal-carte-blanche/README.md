@@ -49,6 +49,11 @@ Les accès ont été regroupés en quatre niveaux pour éviter une page catalogu
 
 Le détail des URL est centralisé dans `liens_accessibles_portail_drse.md`.
 
+Dans la maquette, ces niveaux sont accessibles par onglets. Cela permet de tester deux scénarios :
+
+- une page unique avec des volets filtrables ;
+- plusieurs pages SharePoint séparées : Accueil, Commerce, Cadre, Spécialisé.
+
 ## Lecture Power Apps
 
 Power Apps devient intéressant quand le besoin n'est plus seulement d'afficher de l'information, mais de guider, filtrer, enregistrer ou suivre une action.

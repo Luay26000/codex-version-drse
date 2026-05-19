@@ -56,6 +56,11 @@ La V1 utilise maintenant les liens fonctionnels transmis, regroupes en niveaux d
 
 Cette organisation evite de recreer un catalogue Pixel complet : les liens coeur sont visibles en premier, les autres restent disponibles sans saturer la page.
 
+Dans la maquette, ces niveaux sont presentes sous forme d'onglets. En SharePoint, ils peuvent etre reproduits de deux manieres :
+
+- une seule page avec des sections successives COEUR / P1 / P2 / P3 ;
+- plusieurs pages ou volets : Accueil, Commerce, Cadre, Specialise.
+
 ## Pages V1 conseillees
 
 - Accueil

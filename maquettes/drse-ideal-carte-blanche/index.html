@@ -336,6 +336,7 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
+      flex-wrap: wrap;
       padding: 12px 13px 0;
     }
 
@@ -369,6 +370,20 @@
     .label.red {
       background: var(--danger-soft);
       color: var(--danger);
+    }
+
+    .webpart-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 0 7px;
+      border: 1px dashed #b8c4d4;
+      border-radius: 6px;
+      background: #fbfcfe;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
     }
 
     .card-body {
@@ -555,6 +570,7 @@
       justify-content: space-between;
       gap: 8px;
       align-items: flex-start;
+      flex-wrap: wrap;
     }
 
     .tool-icon {
@@ -999,6 +1015,7 @@
             <p id="roleSummary">Priorités agence, supports utiles et points à suivre.</p>
           </div>
           <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Tableau de bord</span>
             <button class="primary-btn" data-toast="Ouverture du kit prioritaire.">Kit prioritaire</button>
             <button class="ghost-btn" data-toast="Ouverture du calendrier opérations.">Calendrier</button>
           </div>
@@ -1009,6 +1026,7 @@
             <div class="card-top">
               <span class="label orange">Commerce</span>
               <span class="label">J-5</span>
+              <span class="webpart-tag">Carte éditoriale</span>
             </div>
             <div class="card-body">
               <h3>Opération Printemps énergie</h3>
@@ -1028,6 +1046,7 @@
             <div class="card-top">
               <span class="label red">Sécurité / RH</span>
               <span class="label">Nouveau</span>
+              <span class="webpart-tag">Bibliothèque de documents</span>
             </div>
             <div class="card-body">
               <h3>Feuilles liaison et registre sécurité</h3>
@@ -1047,6 +1066,7 @@
             <div class="card-top">
               <span class="label purple">Fournisseurs</span>
               <span class="label orange">Vigilance</span>
+              <span class="webpart-tag">Liste</span>
             </div>
             <div class="card-body">
               <h3>Appro Schneider et Legrand</h3>
@@ -1066,6 +1086,7 @@
             <div class="card-top">
               <span class="label green">Terrain</span>
               <span class="label">8 sujets</span>
+              <span class="webpart-tag">Boîte à idées</span>
             </div>
             <div class="card-body">
               <h3>Questions et bonnes pratiques</h3>
@@ -1089,6 +1110,9 @@
             <h2>Assistant d'orientation</h2>
             <p>Accès direct au bon circuit.</p>
           </div>
+          <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Power Apps / Agent link</span>
+          </div>
         </div>
         <div class="assistant">
           <div class="route-tabs" role="group" aria-label="Choisir un besoin">
@@ -1111,7 +1135,8 @@
           <p>Accès les plus utiles selon votre activité.</p>
         </div>
         <div class="panel-tools">
-            <button class="ghost-btn" data-toast="Tous les outils restent accessibles.">Voir tout</button>
+          <span class="webpart-tag">WebPart proche : Tableau de bord / Liens rapides</span>
+          <button class="ghost-btn" data-toast="Tous les outils restent accessibles.">Voir tout</button>
         </div>
       </div>
       <div class="tools-grid" id="toolsGrid">
@@ -1186,6 +1211,7 @@
             <p>Opérations, kits, supports et échéances terrain.</p>
           </div>
           <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Événements / Liste</span>
             <button class="primary-btn" data-toast="Calendrier Grégoire ouvert.">Calendrier Grégoire</button>
           </div>
         </div>
@@ -1231,6 +1257,9 @@
             <h2>Dossier du moment</h2>
             <p>Tout ce qui sert pour agir vite.</p>
           </div>
+          <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Contenu mis en évidence</span>
+          </div>
         </div>
         <div class="split-body">
           <article class="contact-card searchable">
@@ -1268,6 +1297,9 @@
             <h2>Qui contacter pour ?</h2>
             <p>Routage par sujet, pôle et niveau de support.</p>
           </div>
+          <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Rôle des contacts</span>
+          </div>
         </div>
         <div class="contacts-grid">
           <article class="contact-card searchable" data-audience="ra commerce">
@@ -1302,6 +1334,9 @@
           <div>
             <h2>Fournisseurs à suivre</h2>
             <p>Vigilances et infos utiles non sensibles.</p>
+          </div>
+          <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Liste</span>
           </div>
         </div>
         <div class="timeline">
@@ -1340,6 +1375,7 @@
           <p>Statut visible, réponse courte, propriétaire identifié.</p>
         </div>
         <div class="panel-tools">
+          <span class="webpart-tag">WebPart proche : Boîte à idées / Forms</span>
           <button class="primary-btn" data-toast="Nouvelle remontée terrain ouverte.">Nouvelle remontée</button>
         </div>
       </div>
@@ -1393,6 +1429,9 @@
             <h2>Vie du portail</h2>
             <p>Qualité, adoption et fraîcheur des contenus.</p>
           </div>
+          <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Indicateur / Activité du site</span>
+          </div>
         </div>
         <div class="metrics-grid">
           <article class="metric-card searchable">
@@ -1423,6 +1462,9 @@
           <div>
             <h2>Chaîne d'usage</h2>
             <p>Du besoin terrain à l'information retrouvable.</p>
+          </div>
+          <div class="panel-tools">
+            <span class="webpart-tag">WebPart proche : Image Interactive</span>
           </div>
         </div>
         <div class="process-row">

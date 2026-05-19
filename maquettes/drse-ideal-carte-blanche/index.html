@@ -386,6 +386,20 @@
       white-space: nowrap;
     }
 
+    .powerapps-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 0 7px;
+      border: 1px solid #d9b8e4;
+      border-radius: 6px;
+      background: #fbf2ff;
+      color: #6e1b83;
+      font-size: 11px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
     .card-body {
       padding: 10px 13px;
     }
@@ -695,6 +709,43 @@
       font-size: 13px;
     }
 
+    .powerapps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .powerapps-card {
+      display: grid;
+      gap: 8px;
+      min-height: 172px;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .powerapps-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .powerapps-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .powerapps-card ul {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding-left: 17px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
     .people {
       display: flex;
       gap: 6px;
@@ -912,6 +963,10 @@
       .tools-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
+
+      .powerapps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 760px) {
@@ -930,6 +985,7 @@
       .contacts-grid,
       .idea-board,
       .metrics-grid,
+      .powerapps-grid,
       .process-row {
         grid-template-columns: 1fr;
       }
@@ -984,6 +1040,7 @@
     <a href="#commerce">Commerce</a>
     <a href="#contacts">Contacts</a>
     <a href="#terrain">Terrain</a>
+    <a href="#powerapps">Power Apps</a>
     <a href="#pilotage">Vie du portail</a>
   </nav>
 
@@ -1016,6 +1073,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Tableau de bord</span>
+            <span class="powerapps-tag">Power Apps : partiel</span>
             <button class="primary-btn" data-toast="Ouverture du kit prioritaire.">Kit prioritaire</button>
             <button class="ghost-btn" data-toast="Ouverture du calendrier opérations.">Calendrier</button>
           </div>
@@ -1112,6 +1170,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Power Apps / Agent link</span>
+            <span class="powerapps-tag">Power Apps : oui</span>
           </div>
         </div>
         <div class="assistant">
@@ -1136,6 +1195,7 @@
         </div>
         <div class="panel-tools">
           <span class="webpart-tag">WebPart proche : Tableau de bord / Liens rapides</span>
+          <span class="powerapps-tag">Power Apps : non prioritaire</span>
           <button class="ghost-btn" data-toast="Tous les outils restent accessibles.">Voir tout</button>
         </div>
       </div>
@@ -1212,6 +1272,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Événements / Liste</span>
+            <span class="powerapps-tag">Power Apps : suivi terrain</span>
             <button class="primary-btn" data-toast="Calendrier Grégoire ouvert.">Calendrier Grégoire</button>
           </div>
         </div>
@@ -1259,6 +1320,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Contenu mis en évidence</span>
+            <span class="powerapps-tag">Power Apps : partiel</span>
           </div>
         </div>
         <div class="split-body">
@@ -1299,6 +1361,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Rôle des contacts</span>
+            <span class="powerapps-tag">Power Apps : routage</span>
           </div>
         </div>
         <div class="contacts-grid">
@@ -1337,6 +1400,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Liste</span>
+            <span class="powerapps-tag">Power Apps : oui</span>
           </div>
         </div>
         <div class="timeline">
@@ -1376,6 +1440,7 @@
         </div>
         <div class="panel-tools">
           <span class="webpart-tag">WebPart proche : Boîte à idées / Forms</span>
+          <span class="powerapps-tag">Power Apps : oui</span>
           <button class="primary-btn" data-toast="Nouvelle remontée terrain ouverte.">Nouvelle remontée</button>
         </div>
       </div>
@@ -1422,6 +1487,101 @@
       </div>
     </section>
 
+    <section id="powerapps" class="section panel">
+      <div class="panel-head">
+        <div>
+          <h2>Ce qui serait pertinent en Power Apps</h2>
+          <p>Quand le besoin dépasse une page, une liste ou un simple lien.</p>
+        </div>
+        <div class="panel-tools">
+          <span class="webpart-tag">WebPart proche : Microsoft PowerApps</span>
+          <span class="powerapps-tag">Usage : application intégrée</span>
+        </div>
+      </div>
+      <div class="powerapps-grid">
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Très pertinent</span>
+          <h3>Assistant d'orientation</h3>
+          <p>Un mini parcours guidé pour trouver le bon outil, contact ou circuit.</p>
+          <ul>
+            <li>choix du besoin</li>
+            <li>filtre par rôle ou pôle</li>
+            <li>recommandation de lien / contact</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Très pertinent</span>
+          <h3>Remontées terrain</h3>
+          <p>Une app de dépôt et suivi des questions, irritants et bonnes idées.</p>
+          <ul>
+            <li>statut visible</li>
+            <li>propriétaire du sujet</li>
+            <li>pièce jointe ou commentaire</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Pertinent</span>
+          <h3>Fournisseurs à suivre</h3>
+          <p>Une interface propre au-dessus d'une liste fournisseurs régionale.</p>
+          <ul>
+            <li>vigilance simple</li>
+            <li>contact interne</li>
+            <li>date et lien source</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Pertinent</span>
+          <h3>Suivi opération agence</h3>
+          <p>Une checklist courte pour les opérations commerciales à relayer.</p>
+          <ul>
+            <li>kit consulté</li>
+            <li>PLV reçue</li>
+            <li>question ouverte</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Partiel</span>
+          <h3>Contacts guidés</h3>
+          <p>Utile si l'annuaire devient un vrai moteur de décision par sujet.</p>
+          <ul>
+            <li>qui contacter pour</li>
+            <li>niveau pôle / région</li>
+            <li>canal recommandé</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Partiel</span>
+          <h3>Procédures guidées</h3>
+          <p>Utile pour transformer une procédure courte en parcours d'action.</p>
+          <ul>
+            <li>question initiale</li>
+            <li>étapes courtes</li>
+            <li>document source final</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="powerapps-tag">Admin</span>
+          <h3>Qualité du portail</h3>
+          <p>Une console pour suivre les contenus à relire et les liens cassés.</p>
+          <ul>
+            <li>responsable de contenu</li>
+            <li>date de revue</li>
+            <li>alerte avant obsolescence</li>
+          </ul>
+        </article>
+        <article class="powerapps-card searchable">
+          <span class="label red">À éviter</span>
+          <h3>Ce qu'on ne refait pas</h3>
+          <p>Power Apps ne doit pas devenir un Pixel, Qlik, CRM ou ticketing bis.</p>
+          <ul>
+            <li>pas de KPI business détaillé</li>
+            <li>pas de référentiel complet</li>
+            <li>pas de données sensibles exposées</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
     <div class="section section-grid">
       <section id="pilotage" class="panel col-6">
         <div class="panel-head">
@@ -1431,6 +1591,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Indicateur / Activité du site</span>
+            <span class="powerapps-tag">Power Apps : admin</span>
           </div>
         </div>
         <div class="metrics-grid">
@@ -1465,6 +1626,7 @@
           </div>
           <div class="panel-tools">
             <span class="webpart-tag">WebPart proche : Image Interactive</span>
+            <span class="powerapps-tag">Power Apps : parcours</span>
           </div>
         </div>
         <div class="process-row">

@@ -36,6 +36,41 @@ Objectif : débloquer la vision produit avant de revenir à une version réalist
 | Vie du portail | Indicateur / Activité du site / Graphique rapide |
 | Chaîne d'usage | Image Interactive |
 
+## Lecture Power Apps
+
+Power Apps devient intéressant quand le besoin n'est plus seulement d'afficher de l'information, mais de guider, filtrer, enregistrer ou suivre une action.
+
+| Bloc | Réalisable via Power Apps ? | Ce que Power Apps peut apporter |
+| --- | --- | --- |
+| Assistant d'orientation | Oui, très pertinent | Parcours guidé : besoin, rôle, pôle, puis proposition du bon outil, contact, support ou circuit. |
+| Remontées terrain | Oui, très pertinent | Formulaire riche, statut, propriétaire, commentaire, pièce jointe, historique, relance possible via Power Automate. |
+| Fournisseurs à suivre | Oui | Interface plus propre qu'une liste brute : filtres, fiches fournisseurs, vigilance, lien source, date de mise à jour. |
+| Suivi opération agence | Oui | Checklist RA : kit consulté, PLV reçue, question ouverte, difficulté remontée, suivi par opération. |
+| Contacts guidés | Partiel | Moteur "qui contacter pour ?" si la logique devient plus complexe qu'un simple annuaire. |
+| Procédures guidées | Partiel | Mini parcours d'action pour procédures courtes : choix du cas, étapes, document source final. |
+| Vie du portail | Oui côté administration | Console de gestion : contenu à relire, lien cassé, propriétaire de contenu, date de prochaine revue. |
+| Accès rapides outils | Non prioritaire | Un Tableau de bord, Mes Applications ou Liens rapides suffisent souvent mieux qu'une app. |
+| Actualités | Non prioritaire | Le WebPart Actualités reste plus adapté ; Power Apps n'est utile que pour une modération ou un workflow spécifique. |
+| KPI business | À éviter | Ne pas refaire Qlik. Power Apps peut afficher du suivi de portail, pas du pilotage commercial détaillé. |
+
+## Frontière utile
+
+À faire avec Power Apps :
+- routage guidé ;
+- formulaires terrain ;
+- suivi de statut ;
+- mini console admin ;
+- interfaces propres au-dessus de listes SharePoint ;
+- parcours courts orientés action.
+
+À ne pas faire avec Power Apps :
+- refaire Pixel ;
+- refaire Qlik ;
+- refaire le CRM ;
+- créer un gros référentiel fournisseurs ;
+- exposer des données sensibles ;
+- fabriquer un outil de ticketing complet si un circuit existe déjà.
+
 ## Fichier à ouvrir
 
 Ouvrir `index.html` dans un navigateur.

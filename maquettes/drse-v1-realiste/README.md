@@ -54,12 +54,16 @@ La V1 utilise maintenant les liens fonctionnels transmis, regroupes en niveaux d
 | P2 - Cadre | Securite Commerce, Securite Logistique, SuccessFactors, Nouveau chef d'agence, Regles d'Or |
 | P3 - Specialise | Mercure, Digital |
 
-Cette organisation evite de recreer un catalogue Pixel complet : les liens coeur sont visibles en premier, les autres restent disponibles sans saturer la page.
+Cette organisation evite de recreer un catalogue Pixel complet : les liens coeur sont visibles en premier, les autres sont places dans la bonne section metier.
 
-Dans la maquette, ces niveaux sont presentes sous forme d'onglets. En SharePoint, ils peuvent etre reproduits de deux manieres :
+Dans la maquette :
 
-- une seule page avec des sections successives COEUR / P1 / P2 / P3 ;
-- plusieurs pages ou volets : Accueil, Commerce, Cadre, Specialise.
+- les liens COEUR restent dans le bloc d'accueil ;
+- les liens P1 sont dans Commerce ;
+- les liens P2 sont dans Securite / RH ;
+- les liens P3 sont dans les liens specialises.
+
+En SharePoint, cela peut etre reproduit en sections successives ou en pages separees : Accueil, Commerce, Cadre, Specialise.
 
 ## Pages V1 conseillees
 

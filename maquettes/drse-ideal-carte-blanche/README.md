@@ -49,10 +49,14 @@ Les accès ont été regroupés en quatre niveaux pour éviter une page catalogu
 
 Le détail des URL est centralisé dans `liens_accessibles_portail_drse.md`.
 
-Dans la maquette, ces niveaux sont accessibles par onglets. Cela permet de tester deux scénarios :
+Dans la maquette, ces niveaux sont répartis par zones pour éviter un mur de liens :
 
-- une page unique avec des volets filtrables ;
-- plusieurs pages SharePoint séparées : Accueil, Commerce, Cadre, Spécialisé.
+- CŒUR dans les accès essentiels de l'accueil ;
+- P1 dans le volet Commerce ;
+- P2 dans le volet Cadre ;
+- P3 dans le volet Spécialisé.
+
+Cela prépare une transposition SharePoint en pages séparées : Accueil, Commerce, Cadre, Spécialisé.
 
 ## Lecture Power Apps
 

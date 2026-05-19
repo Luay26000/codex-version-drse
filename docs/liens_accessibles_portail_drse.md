@@ -46,11 +46,11 @@ Inventaire propre des liens fonctionnels transmis pour construire une V1 plus ci
 
 ## Représentation recommandée
 
-Ces catégories peuvent être présentées :
+Ces catégories sont à présenter en priorité dans les zones suivantes :
 
-- soit comme des onglets dans une même page ;
-- soit comme des pages / volets SharePoint séparés :
-  - Accueil / CŒUR ;
-  - Commerce / P1 ;
-  - Cadre / P2 ;
-  - Spécialisé / P3.
+- **Accueil / CŒUR** : accès essentiels visibles immédiatement.
+- **Commerce / P1** : liens commerce, merchandising et animation.
+- **Cadre / P2** : sécurité, RH, onboarding et règles internes.
+- **Spécialisé / P3** : liens utiles mais moins fréquents.
+
+Objectif : éviter d'afficher tous les liens au même endroit.
